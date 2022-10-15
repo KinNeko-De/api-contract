@@ -1,0 +1,12 @@
+
+[*.proto]
+indent_style = space
+indent_size = 2
+tab_width = 2
+
+[*]
+
+# ReSharper properties
+resharper_protobuf_indent_size = 2
+resharper_protobuf_tab_width = 2
+resharper_protobuf_use_indent_from_vs = false
