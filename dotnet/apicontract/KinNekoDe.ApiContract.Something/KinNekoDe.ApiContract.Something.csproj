@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.3;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Product>KinNekoDe</Product>
+    <PackageType>Dependency</PackageType>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <PackageId>kinneko-de.api-contract.something</PackageId>
+    <Title>KinNekoDe.ApiContract.Something</Title>
+    <Authors>Nils Diekmann</Authors>
+    <Description>Api contract specified in protobuf for project restaurant. Currently supported languages are: C#</Description>
+    <Summary>Api contract specified in protobuf.</Summary>
+    <PackageTags>api contract protobuf</PackageTags>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <PackageProjectUrl>https://github.com/KinNeko-De/api-contract</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/KinNeko-De/api-contract</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageReadmeFile>content/README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.21.7" />
+    <PackageReference Include="Grpc.Tools" Version="2.49.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="kinneko-de.api-contract.csharp" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="../../../kinnekode/apicontract/something/**/*.proto" ProtoRoot="../../.." GrpcServices="None">
+      <Link>kinnekode/apicontract/something/%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Protobuf>
+    <Protobuf Update="../../../kinnekode/apicontract/something/**/grpc/**/*.proto" GrpcServices="Both" />
+
+    <Protobuf Include="../../../kinnekode/protobuf/**/*.proto" ProtoRoot="../../.." GrpcServices="None" CompileOutputs="false">
+      <Link>kinnekode\protobuf\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Protobuf>
+  </ItemGroup>
+</Project>
