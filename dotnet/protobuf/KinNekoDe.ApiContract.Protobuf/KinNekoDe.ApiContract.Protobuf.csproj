@@ -41,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="../../../protos/kinnekode/protobuf/**/*.proto" ProtoRoot="../../../protos" GrpcServices="None">
+    <Protobuf Include="../../../proto/kinnekode/protobuf/**/*.proto" ProtoRoot="../../../proto" GrpcServices="None">
       <Link>kinnekode/protobuf/%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Protobuf>
   </ItemGroup>
