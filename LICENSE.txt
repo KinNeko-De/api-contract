@@ -3,7 +3,7 @@ license gpl-3.0
   GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
- Copyright (C) 2022 Nils Diekmann
+ Copyright (C) 2023 Nils Diekmann
 
  Everyone is permitted to copy and distribute verbatim copies
  of this license document, but changing it is not allowed.

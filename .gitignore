@@ -361,3 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# golang
+# go work is used for local development:  https://dev.to/gophers/what-are-go-workspaces-and-how-do-i-use-them-1643
+go.work
+go.work.sum
+
+# Downloaded proto compiler
+tools/protoc/*
