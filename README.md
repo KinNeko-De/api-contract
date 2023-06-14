@@ -18,7 +18,8 @@ Fetching this version must be fully automated.
 2. Develop your API and check it in if you are ready. A prerelease version of your API is built then.
 3. Use this API to verify that it is usable. 'API first' does not mean that you have to release the api before you evaluate it for the first time.
 4. Generate all code that needs to be in the repository. Currently, C# is built using the pipeline and Golang has to be checked in.
-5. Merge the code back to the master using a pull request.
+5. Generate all docs.
+6. Merge the code back to the master using a pull request.
 
 # Scope of the API projects
 Each first level folder *proto/kinnekode/<nameOfProject>* is a project.
