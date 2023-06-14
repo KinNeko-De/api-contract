@@ -3,7 +3,7 @@ A clear, easy to use and fully automated api is the basic for a microservice arc
 
 [Protobuf](https://protobuf.dev/) offers a way to define an api with the following benefits:
 - It is binary.
-- It has clear rules for backward compatibility and breaking changes.
+- It has clear rules for compatibility and breaking changes.
 - It also generated very small byte representation against a hard-defined contract.
 
 For remote procedure calls the usage of [Grpc](https://grpc.io/) is preferred.
@@ -21,7 +21,7 @@ Fetching this version must be fully automated.
 5. Merge the code back to the master using a pull request.
 
 # Scope of the API projects
-Each first level folder (protos/kinnekode/<nameOfProject> is a project.
+Each first level folder *proto/kinnekode/<nameOfProject>* is a project.
 
 Each of the projects in this repository has its own lifecycle and version number.
 

@@ -1,22 +1,29 @@
 #!/bin/bash
 export PATH="$PATH:$(go env GOPATH)/bin"
 
-outdated=( $(\ls -d */) )
-for i in "${outdated[@]}"
-do
-    rm -r ${i}
-    echo "Removed generated go code for $i"
-done
-
-cd ..
-
 protobase=proto
 protobasepackage=kinnekode
 protopath=${protobase}/${protobasepackage}
 
+
+cd ${protobasepackage}
+outdated=( $(\ls -d */) )
+for o in "${outdated[@]}"
+do
+    find ${o} -name *.pb.go \
+    -exec rm {} +
+    echo "Removed generated go code for $o"
+    rm ${o}/go.mod
+    rm ${o}/go.sum
+    echo "Removed generated go mod files for $o"
+done
+cd - > /dev/null
+
+cd ..
+
 cd ${protopath}
 projects=( $(\ls -d */ ) )
-cd -
+cd - > /dev/null
 
 outputpath=golang
 
@@ -30,7 +37,7 @@ do
 	modulename=$(echo github.com/kinneko-de/api-contract/golang/${protobasepackage}/${i} | sed 's/.$//')
 	go mod init ${modulename}
 	go mod tidy
-	cd -
+	cd - > /dev/null
 	echo "Generated mod files for: $i"
 done
 
