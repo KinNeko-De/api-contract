@@ -6,7 +6,7 @@ on:
       - 'dotnet/protobuf/**'
       - 'golang/kinnekode/protobuf/**'
       - '!**/**.md'
-      - '!docs/**'
+      - '!doc/**'
 env:
   MAJOR_MINOR_PATCH: 0.2.2
   DOTNET_SOLUTION: dotnet/protobuf/KinNekoDe.ApiContract.Protobuf.sln
