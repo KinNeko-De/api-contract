@@ -1,14 +1,21 @@
 #!/bin/bash
 
-cd ..
-
 export PATH="$PATH:$(go env GOPATH)/bin"
 
 protobase=proto
-protopath=${protobase}/kinnekode
-projects=( $(command ls ${protopath}) )
-outputpath=docs
+protobasepackage=kinnekode
+protopath=${protobase}/${protobasepackage}
 
+rm -r ${protobasepackage}
+
+cd ..
+
+cd ${protopath}
+projects=( $(command \ls -d */) )
+
+cd - > /dev/null
+
+outputpath=doc/${protobasepackage}
 for i in "${projects[@]}"
 do
     projectoutputpath=${outputpath}/${i}
@@ -20,7 +27,7 @@ do
     fi
     additionalprotos="$protobuf $protobase/google"
 
-    mkdir ${projectoutputpath}
+    mkdir -p ${projectoutputpath}
 
     find ${protopath}/${i} ${additionalprotos} -name *.proto \
     -exec tools/protoc/win64/bin/protoc.exe --proto_path=${protobase} --doc_out=${projectoutputpath} --doc_opt=markdown,index.md {} +
