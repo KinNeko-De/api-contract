@@ -5,7 +5,6 @@ protobase=proto
 protobasepackage=kinnekode
 protopath=${protobase}/${protobasepackage}
 
-
 cd ${protobasepackage}
 outdated=( $(\ls -d */) )
 for o in "${outdated[@]}"
