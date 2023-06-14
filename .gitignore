@@ -368,4 +368,4 @@ go.work
 go.work.sum
 
 # Downloaded proto compiler
-tools/protoc/*
+tools/protoc/win64*
