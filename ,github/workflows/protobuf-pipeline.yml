@@ -8,7 +8,7 @@ on:
       - '!**/**.md'
       - '!doc/**'
 env:
-  MAJOR_MINOR_PATCH: 0.2.2
+  MAJOR_MINOR_PATCH: 0.1.0
   DOTNET_SOLUTION: dotnet/protobuf/KinNekoDe.ApiContract.Protobuf.sln
   GOLANG_MODULE: golang/kinnekode/protobuf
 
