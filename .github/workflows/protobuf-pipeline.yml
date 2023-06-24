@@ -8,6 +8,10 @@ on:
       - '!**/**.md'
       - '!doc/**'
 
+permissions:
+  contents: write
+  packages: write
+
 concurrency: ci-${{ github.ref }}
 
 name: apicontract-protobuf
