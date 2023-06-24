@@ -17,7 +17,7 @@ concurrency: ci-${{ github.ref }}
 name: apicontract-protobuf
 
 jobs:
-    call-ci-pipeline:
+    ci-api:
       uses: ./.github/workflows/pipeline.yml
       with:
         project: protobuf

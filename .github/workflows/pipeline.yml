@@ -16,7 +16,7 @@ on:
 
 jobs:
   ci:
-    name: "ci api ${{ inputs.project }}"
+    name: "${{ inputs.project }}"
     runs-on: ubuntu-latest
     permissions:
         contents: write
