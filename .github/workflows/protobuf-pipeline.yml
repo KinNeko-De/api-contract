@@ -7,21 +7,16 @@ on:
       - 'golang/kinnekode/protobuf/**'
       - '!**/**.md'
       - '!doc/**'
-env:
-  MAJOR_MINOR_PATCH: 0.1.0
-  DOTNET_SOLUTION: dotnet/protobuf/KinNekoDe.ApiContract.Protobuf.sln
-  GOLANG_MODULE: golang/kinnekode/protobuf
-  PROJECT: protobuf
 
 concurrency: ci-${{ github.ref }}
 
-name: apicontract-${{ env.PROJECT }}
+name: apicontract-protobuf
 
 jobs:
     call-ci-pipeline:
       uses: ./.github/workflows/pipeline.yml
       with:
-        project: ${{ env.PROJECT }}
-        dotnet_solution: ${{ env.DOTNET_SOLUTION }}
-        golang_module: ${{ env.GOLANG_MODULE }}
-        major_minor_patch: ${{ env.MAJOR_MINOR_PATCH }}
+        project: protobuf
+        dotnet_solution: dotnet/protobuf/KinNekoDe.ApiContract.Protobuf.sln
+        golang_module: golang/kinnekode/protobuf
+        major_minor_patch: 0.1.0
