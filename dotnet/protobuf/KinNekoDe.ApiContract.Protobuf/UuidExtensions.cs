@@ -24,6 +24,6 @@ public static class UuidExtensions
 
     public static Uuid? FromNullableGuid(Guid? guid)
     {
-        return guid == null ? null : new Uuid() { Value = guid.Value.ToString("D") };
+        return guid == null ? null : Uuid.FromGuid(guid.Value);
     }
 }

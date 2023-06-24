@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package kinnekode.protobuf;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/protobuf";
+
+// Decimal https://en.wikipedia.org/wiki/IEEE_754#Decimal
+//
+//  Format:
+//  The whole units of the amount.
+//  Followed optional by a dot '.' and the number of nano (10^-9) units of the amount.
+//  The value must be between 000000000 and 999999999 inclusive.
+message Decimal {
+  // Example: 42, -42, 42.0000, -42.0000, 42.0001, -42.0001
+  string value = 1;
+}

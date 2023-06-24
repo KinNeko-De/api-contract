@@ -180,4 +180,5 @@
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Finanz/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Grpc/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Kinnekode/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Neko/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/UserDictionary/Words/=Protobuf/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

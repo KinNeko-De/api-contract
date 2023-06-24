@@ -5,8 +5,7 @@ package kinnekode.protobuf;
 option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/protobuf";
 
 // Universally Unique Identifier (https://www.rfc-editor.org/rfc/rfc4122)
-//
-// Example: 550e8400-e29b-11d4-a716-446655440000
 message Uuid {
+  // Example: 550e8400-e29b-11d4-a716-446655440000
   string value = 1;
 }

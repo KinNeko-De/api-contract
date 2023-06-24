@@ -19,14 +19,14 @@ outputpath=doc/${protobasepackage}
 for i in "${projects[@]}"
 do
     projectoutputpath=${outputpath}/${i}
-    if [[ "$i" != "protobuf" ]]
+    if [[ "$i" != "protobuf/" ]]
     then
     protobuf=${protopath}/protobuf
     else
     protobuf=""
     fi
     additionalprotos="$protobuf $protobase/google"
-
+    
     mkdir -p ${projectoutputpath}
 
     find ${protopath}/${i} ${additionalprotos} -name *.proto \
