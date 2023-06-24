@@ -18,7 +18,7 @@ name: apicontract-example
 
 jobs:
   publish:
-    name: "Publish api"
+    name: "CI Api Example"
     runs-on: ubuntu-latest
     permissions:
         contents: write
@@ -101,7 +101,7 @@ jobs:
          dotnet build ${{ env.DOTNET_SOLUTION }} --no-restore -c Release ${{ steps.dotnet.outputs.parameters }}
       - name: Test .NET
         run: |
-         dotnet test ${{ env.DOTNET_SOLUTION }} --no-restore --no-build -c Release ${{ steps.dotnet.outputs.parameters }}
+         dotnet test ${{ env.DOTNET_SOLUTION }} --no-restore --no-build -c Release
       - name: Pack .NET
         run: |
           dotnet pack ${{ env.DOTNET_SOLUTION }} --no-restore --no-build -c Release ${{ steps.dotnet.outputs.parameters }}
