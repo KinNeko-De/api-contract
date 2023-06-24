@@ -1,9 +1,10 @@
 package protobuf
 
 import (
+	"testing"
+
 	google "github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestToUuid(t *testing.T) {
@@ -29,5 +30,5 @@ func TestToProtobuf(t *testing.T) {
 
 	actual, err := ToProtobuf(toParse)
 	assert.Nil(t, err)
-	assert.Same(t, &expected, actual)
+	assert.Equal(t, &expected, actual)
 }
