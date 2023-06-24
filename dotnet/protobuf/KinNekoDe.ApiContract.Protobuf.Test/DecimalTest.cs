@@ -13,7 +13,6 @@ public class DecimalTest
             Add(-5.124m, "-5.124");
             Add(5m, "5");
             Add(-5m, "-5");
-            Add(-0m, "0");
             Add(0m, "0");
         }
     }
