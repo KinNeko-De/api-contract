@@ -18,6 +18,7 @@ public class UuidTest
     {
         public InvalidTestData()
         {
+            Add(string.Empty);
             Add("12");
             Add("ED420000000000000000000000000000");
             Add("ed420000000000000000000000000000");
