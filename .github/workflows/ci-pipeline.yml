@@ -72,7 +72,7 @@ jobs:
       - name: "Test go api"
         run: |
           cd ${{ inputs.golang_module}}
-          go test ./...
+          go test ./... -race -coverprofile=coverage.out
       # dotnet
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
