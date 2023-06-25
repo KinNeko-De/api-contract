@@ -31,9 +31,9 @@ There is a special project called 'protobuf' in the repository. 'protobuf' is us
 ## Why one repository for all?
 1. To compile using protoc you need the proto files in a directory. Otherwise, it does not compile.
 2. To include the generated code you have three options. 
-  1. Include the generated file of an included package to your new package. That may cause conflicts if you use api from different projects in your code. I have not tested that.
-  2. You include the package as a reference (works at least for C# and for Go). As a downside, you have to modify the package in different feature branches. You also have to release the version of the used package first to use it in the other package.
-  3. You include nothing and the user of the API has to find out which additional package in which version is needed.
+    1. Include the generated file of an included package to your new package. That may cause conflicts if you use api from different projects in your code. I have not tested that.
+    2. You include the package as a reference (works at least for C# and for Go). As a downside, you have to modify the package in different feature branches. You also have to release the version of the used package first to use it in the other package.
+    3. You include nothing and the user of the API has to find out which additional package in which version is needed.
 3. The projects (at least 'protobuf') also include implemented helpers to deal with the types. To include this code the api contract or the user of the api contract has to reference the package.
 
 ### Conclusion
