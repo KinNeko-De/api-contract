@@ -99,7 +99,7 @@ jobs:
          dotnet build ${{ inputs.dotnet_solution }} --no-restore -c Release ${{ steps.dotnet.outputs.parameters }}
       - name: Test .NET
         run: |
-         dotnet test ${{ inputs.dotnet_solution }} --no-restore --no-build -c Release
+         dotnet test ${{ inputs.dotnet_solution }} --no-restore --no-build -c Release -p:Version=${{ inputs.major_minor_patch }} --verbosity normal --collect:"XPlat Code Coverage" --settings dotnet/coverlet.runsettings --results-directory=dotnet/coverage
       - name: Pack .NET
         run: |
           dotnet pack ${{ inputs.dotnet_solution }} --no-restore --no-build -c Release ${{ steps.dotnet.outputs.parameters }}
