@@ -18,7 +18,7 @@ name: apicontract-protobuf
 
 jobs:
     ci-api:
-      uses: ./.github/workflows/pipeline.yml
+      uses: ./.github/workflows/ci-pipeline.yml
       with:
         project: protobuf
         dotnet_solution: dotnet/protobuf/KinNekoDe.ApiContract.Protobuf.sln
