@@ -2,6 +2,7 @@ on:
   push:
     paths:
       - '.github/workflows/protobuf-ci-pipeline.yml'
+      - '.github/workflows/ci-pipeline.yml'
       - 'proto/kinnekode/protobuf/**'
       - 'dotnet/protobuf/**'
       - 'golang/kinnekode/protobuf/**'
