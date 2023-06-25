@@ -21,9 +21,6 @@ public partial class Decimal : ICustomDiagnosticMessage
         return parseable;
     }
 
-    public static explicit operator Decimal(decimal value) => FromDecimal(value);
-    public static explicit operator Decimal?(decimal? value) => DecimalExtensions.FromNullableDecimal(value);
-
     string ICustomDiagnosticMessage.ToDiagnosticString()
     {
         return Value;
@@ -34,8 +31,11 @@ public partial class Decimal : ICustomDiagnosticMessage
         return value.ToString(CultureInfo.InvariantCulture);
     }
 
-    private NumberStyles GetNumberStyles()
+    private static NumberStyles GetNumberStyles()
     {
         return NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint;
     }
+
+    public static explicit operator Decimal(decimal value) => FromDecimal(value);
+    public static explicit operator Decimal?(decimal? value) => DecimalExtensions.FromNullableDecimal(value);
 }
