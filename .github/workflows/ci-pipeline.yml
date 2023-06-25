@@ -77,6 +77,7 @@ jobs:
         run: |
           cd ${{ inputs.golang_module}}
           grep -v ".pb.go" coverage.generated.tmp > coverage.out
+          rm coverage.generated.tmp
       # dotnet
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
