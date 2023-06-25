@@ -8,6 +8,11 @@ A clear, easy to use and fully automated api is the basic for a microservice arc
 
 For remote procedure calls the usage of [Grpc](https://grpc.io/) is preferred.
 
+# Status
+[![ci-api-protobuf](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-pipeline-protobuf.yml/badge.svg)](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-pipeline-protobuf.yml)
+
+[![codecov](https://codecov.io/gh/KinNeko-De/api-contract/branch/main/graph/badge.svg?token=U17XTP8S6Y)](https://codecov.io/gh/KinNeko-De/api-contract)
+
 # Motivation
 Having one unique version number for a state of the API makes it easier to use. You only have to look at the version numbers to find out what you need. The version number has to follow the [semantic versioning](https://semver.org/)
 
