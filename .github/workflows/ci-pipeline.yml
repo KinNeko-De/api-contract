@@ -72,7 +72,11 @@ jobs:
       - name: "Test go api"
         run: |
           cd ${{ inputs.golang_module}}
-          go test ./... -race -coverprofile=coverage.generated.tmp | grep -v ".pb.go" coverage.generated.tmp > coverage.out
+          go test ./... -race -coverprofile=coverage.generated.tmp
+      - name: "Exclude generated code"
+        run: |
+          cd ${{ inputs.golang_module}}
+          grep -v ".pb.go" coverage.generated.tmp > coverage.out
       # dotnet
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
