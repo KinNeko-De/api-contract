@@ -72,7 +72,12 @@ jobs:
       - name: "Test go api"
         run: |
           cd ${{ inputs.golang_module}}
-          go test ./... -race -coverprofile=coverage.out
+          go test ./... -race -coverprofile=coverage.generated.tmp
+      - name: "Exclude generated code"
+        run: |
+          cd ${{ inputs.golang_module}}
+          grep -v ".pb.go" coverage.generated.tmp > coverage.out
+          rm coverage.generated.tmp
       # dotnet
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
@@ -99,7 +104,13 @@ jobs:
          dotnet build ${{ inputs.dotnet_solution }} --no-restore -c Release ${{ steps.dotnet.outputs.parameters }}
       - name: Test .NET
         run: |
-         dotnet test ${{ inputs.dotnet_solution }} --no-restore --no-build -c Release
+         dotnet test ${{ inputs.dotnet_solution }} --no-restore --no-build -c Release -p:Version=${{ inputs.major_minor_patch }} --collect:"XPlat Code Coverage" --settings dotnet/coverlet.runsettings --results-directory=dotnet/coverage
+      - name: Publish code coverage
+        uses: codecov/codecov-action@v3
+        with:
+          root_dir: .
+          fail_ci_if_error: true
+          verbose: true
       - name: Pack .NET
         run: |
           dotnet pack ${{ inputs.dotnet_solution }} --no-restore --no-build -c Release ${{ steps.dotnet.outputs.parameters }}
@@ -116,9 +127,3 @@ jobs:
               ref: "refs/tags/${{ inputs.golang_module }}/v${{ steps.semantic_version.outputs.semantic_version }}",
               sha: context.sha
             })
-      - name: Publish code coverage
-        uses: codecov/codecov-action@v3
-        with:
-          root_dir: .
-          fail_ci_if_error: true
-          verbose: true

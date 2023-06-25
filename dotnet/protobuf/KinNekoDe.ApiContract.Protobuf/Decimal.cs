@@ -15,32 +15,27 @@ public partial class Decimal : ICustomDiagnosticMessage
     }
 
     public bool TryParseToDecimal(out decimal value)
-    { ;
-        if (decimal.TryParse(Value, GetNumberStyles(), CultureInfo.InvariantCulture, out decimal parsedDecimal))
-        {
-            value = parsedDecimal;
-            return true;
-        }
-
-        value = decimal.Zero;
-        return false;
+    {
+        var parseable = decimal.TryParse(Value, GetNumberStyles(), CultureInfo.InvariantCulture, out decimal parsedDecimal);
+        value = parseable ? parsedDecimal : default;
+        return parseable;
     }
 
     public static explicit operator Decimal(decimal value) => FromDecimal(value);
     public static explicit operator Decimal?(decimal? value) => DecimalExtensions.FromNullableDecimal(value);
-
-    string ICustomDiagnosticMessage.ToDiagnosticString()
-    {
-        return Value;
-    }
 
     private static string ToMessageValue(decimal value)
     {
         return value.ToString(CultureInfo.InvariantCulture);
     }
 
-    private NumberStyles GetNumberStyles()
+    private static NumberStyles GetNumberStyles()
     {
         return NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint;
+    }
+
+    string ICustomDiagnosticMessage.ToDiagnosticString()
+    {
+        return Value;
     }
 }

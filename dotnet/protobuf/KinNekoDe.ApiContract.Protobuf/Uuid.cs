@@ -1,5 +1,6 @@
 ﻿using System;
 using Google.Protobuf;
+using Google.Protobuf.WellKnownTypes;
 
 namespace Kinnekode.Protobuf;
 
@@ -17,14 +18,9 @@ public partial class Uuid : ICustomDiagnosticMessage
 
     public bool TryParseToGuid(out Guid guid)
     {
-        if (Guid.TryParseExact(Value, "D", out Guid parsedGuid))
-        {
-            guid = parsedGuid;
-            return true;
-        }
-
-        guid = Guid.Empty;
-        return false;
+        var parseable = Guid.TryParseExact(Value, "D", out Guid parsedGuid);
+        guid = parseable ? parsedGuid : default;
+        return parseable;
     }
 
     public static explicit operator Uuid(Guid guid) => FromGuid(guid);
