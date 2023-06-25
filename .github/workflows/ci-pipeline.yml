@@ -116,3 +116,9 @@ jobs:
               ref: "refs/tags/${{ inputs.golang_module }}/v${{ steps.semantic_version.outputs.semantic_version }}",
               sha: context.sha
             })
+      - name: Publish code coverage
+        uses: codecov/codecov-action@v3
+        with:
+          root_dir: .
+          fail_ci_if_error: true
+          verbose: true
