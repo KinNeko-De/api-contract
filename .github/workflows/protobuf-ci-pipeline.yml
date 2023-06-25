@@ -10,7 +10,7 @@ on:
 
 concurrency: ci-${{ github.ref }}
 
-name: apicontract-protobuf
+name: ci-api-protobuf
 
 jobs:
     ci-api:
