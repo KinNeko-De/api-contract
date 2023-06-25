@@ -15,7 +15,7 @@ public partial class Decimal : ICustomDiagnosticMessage
     }
 
     public bool TryParseToDecimal(out decimal value)
-    { ;
+    {
         if (decimal.TryParse(Value, GetNumberStyles(), CultureInfo.InvariantCulture, out decimal parsedDecimal))
         {
             value = parsedDecimal;

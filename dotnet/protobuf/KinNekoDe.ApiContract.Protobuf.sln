@@ -6,8 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinNekoDe.ApiContract.Protobuf", "KinNekoDe.ApiContract.Protobuf\KinNekoDe.ApiContract.Protobuf.csproj", "{1F4A8B70-6D50-468D-A87E-A8DD0F30CC56}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4F1389FC-87A0-4956-A7AA-C239E1F5BDC4}"
+	ProjectSection(SolutionItems) = preProject
+		..\coverlet.runsettings = ..\coverlet.runsettings
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinNekoDe.ApiContract.Protobuf.Test", "KinNekoDe.ApiContract.Protobuf.Test\KinNekoDe.ApiContract.Protobuf.Test.csproj", "{A7CC20B7-0B23-4CFD-9D01-9B675DA0394D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinNekoDe.ApiContract.Protobuf.Test", "KinNekoDe.ApiContract.Protobuf.Test\KinNekoDe.ApiContract.Protobuf.Test.csproj", "{A7CC20B7-0B23-4CFD-9D01-9B675DA0394D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
