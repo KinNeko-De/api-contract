@@ -21,10 +21,8 @@ public partial class Decimal : ICustomDiagnosticMessage
         return parseable;
     }
 
-    string ICustomDiagnosticMessage.ToDiagnosticString()
-    {
-        return Value;
-    }
+    public static explicit operator Decimal(decimal value) => FromDecimal(value);
+    public static explicit operator Decimal?(decimal? value) => DecimalExtensions.FromNullableDecimal(value);
 
     private static string ToMessageValue(decimal value)
     {
@@ -36,6 +34,8 @@ public partial class Decimal : ICustomDiagnosticMessage
         return NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint;
     }
 
-    public static explicit operator Decimal(decimal value) => FromDecimal(value);
-    public static explicit operator Decimal?(decimal? value) => DecimalExtensions.FromNullableDecimal(value);
+    string ICustomDiagnosticMessage.ToDiagnosticString()
+    {
+        return Value;
+    }
 }

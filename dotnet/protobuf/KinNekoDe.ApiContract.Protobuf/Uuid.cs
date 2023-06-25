@@ -23,11 +23,11 @@ public partial class Uuid : ICustomDiagnosticMessage
         return parseable;
     }
 
+    public static explicit operator Uuid(Guid guid) => FromGuid(guid);
+    public static explicit operator Uuid?(Guid? guid) => UuidExtensions.FromNullableGuid(guid);
+
     string ICustomDiagnosticMessage.ToDiagnosticString()
     {
         return Value;
     }
-
-    public static explicit operator Uuid(Guid guid) => FromGuid(guid);
-    public static explicit operator Uuid?(Guid? guid) => UuidExtensions.FromNullableGuid(guid);
 }
