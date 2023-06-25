@@ -32,7 +32,7 @@ public class DecimalTest
 
     [Theory]
     [ClassData(typeof(NotNullableTestData))]
-    public void FromDecimal_Decimal(decimal input, string expected)
+    public void FromDecimal(decimal input, string expected)
     {
         var actual = Decimal.FromDecimal(input);
 
@@ -43,7 +43,7 @@ public class DecimalTest
 
     [Theory]
     [ClassData(typeof(NotNullableTestData))]
-    public void ToDecimal_Decimal(decimal expected, string input)
+    public void ToDecimal(decimal expected, string input)
     {
         var message = new Decimal() { Value = input };
 
@@ -54,7 +54,7 @@ public class DecimalTest
 
     [Theory]
     [ClassData(typeof(InvalidTestData))]
-    public void ToDecimal_Decimal_Invalid(string input)
+    public void ToDecimal_Invalid(string input)
     {
         var message = new Decimal() { Value = input };
 
@@ -106,7 +106,7 @@ public class DecimalTest
     [ClassData(typeof(NotNullableTestData))]
     public void ToNullableDecimal(decimal expected, string input)
     {
-        Decimal message = new Decimal() { Value = input };
+        var message = new Decimal() { Value = input };
 
         decimal? actual = message.ToNullableDecimal();
         Assert.Equal(expected, actual);
@@ -116,7 +116,7 @@ public class DecimalTest
     [ClassData(typeof(InvalidTestData))]
     public void ToNullableDecimal_Invalid(string input)
     {
-        Decimal message = new Decimal() { Value = input };
+        var message = new Decimal() { Value = input };
 
         Assert.Throws<FormatException>(() => message.ToNullableDecimal());
     }
@@ -134,7 +134,7 @@ public class DecimalTest
     [ClassData(typeof(NotNullableTestData))]
     public void TryParseToNullableDecimal(decimal expected, string input)
     {
-        Decimal message = new Decimal() { Value = input };
+        var message = new Decimal() { Value = input };
 
         var parseable = message.TryParseToNullableDecimal(out var actual);
 
@@ -156,7 +156,7 @@ public class DecimalTest
     [ClassData(typeof(InvalidTestData))]
     public void TryParseToNullableDecimal_Invalid(string input)
     {
-        Decimal message = new Decimal() { Value = input };
+        var message = new Decimal() { Value = input };
 
         var parseable = message.TryParseToNullableDecimal(out var actual);
 

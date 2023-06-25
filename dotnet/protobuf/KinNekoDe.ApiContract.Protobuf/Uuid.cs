@@ -12,12 +12,12 @@ public partial class Uuid : ICustomDiagnosticMessage
 
     public Guid ToGuid()
     {
-        return Guid.Parse(Value);
+        return Guid.ParseExact(Value, "D");
     }
 
     public bool TryParseToGuid(out Guid guid)
     {
-        if (Guid.TryParse(Value, out Guid parsedGuid))
+        if (Guid.TryParseExact(Value, "D", out Guid parsedGuid))
         {
             guid = parsedGuid;
             return true;
