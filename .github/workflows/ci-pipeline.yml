@@ -1,24 +1,22 @@
 on:
-  push:
-    paths:
-      - '.github/workflows/example-pipeline.yml'
-      - 'proto/kinnekode/example/**'
-      - 'dotnet/example/**'
-      - 'golang/kinnekode/example/**'
-      - '!**/**.md'
-      - '!docs/**'
-env:
-  MAJOR_MINOR_PATCH: 0.2.2
-  DOTNET_SOLUTION: dotnet/example/KinNekoDe.ApiContract.Example.sln
-  GOLANG_MODULE: golang/kinnekode/example
-
-concurrency: ci-${{ github.ref }}
-
-name: apicontract-example
+  workflow_call:
+    inputs:
+      project:
+        required: true
+        type: string
+      dotnet_solution:
+        required: true
+        type: string
+      golang_module:
+        required: true
+        type: string
+      major_minor_patch:
+        required: true
+        type: string
 
 jobs:
-  publish:
-    name: "Publish api"
+  ci:
+    name: "${{ inputs.project }}"
     runs-on: ubuntu-latest
     permissions:
         contents: write
@@ -54,7 +52,7 @@ jobs:
       - name : Semantic version
         id: semantic_version
         run: |
-          SEMANTIC_VERSION="${{ env.MAJOR_MINOR_PATCH }}"
+          SEMANTIC_VERSION="${{ inputs.major_minor_patch }}"
           SEMANTIC_VERSION="${SEMANTIC_VERSION}${{ steps.version_suffix.outputs.extension }}"
           echo 'MAJOR_MINOR_PATCH: ' $MAJOR_MINOR_PATCH
           echo 'SEMANTIC_VERSION: ' $SEMANTIC_VERSION
@@ -69,8 +67,12 @@ jobs:
         run: go version
       - name: "Build go api"
         run: |
-          cd ${{ env.GOLANG_MODULE}}
+          cd ${{ inputs.golang_module}}
           go build ./...
+      - name: "Test go api"
+        run: |
+          cd ${{ inputs.golang_module}}
+          go test ./...
       # dotnet
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
@@ -91,13 +93,16 @@ jobs:
       - name: Add Github nuget source
         run: dotnet nuget add source https://nuget.pkg.github.com/KinNeko-De/index.json --name github --username KinNeko-De --password ${{secrets.GITHUB_TOKEN}} --store-password-in-clear-text --configfile dotnet/nuget.config
       - name: Restore dependencies for .NET
-        run: dotnet restore ${{ env.DOTNET_SOLUTION }} --configfile dotnet/nuget.config
+        run: dotnet restore ${{ inputs.dotnet_solution }} --configfile dotnet/nuget.config
       - name: Build .NET
         run: |
-         dotnet build ${{ env.DOTNET_SOLUTION }} --no-restore -c Release ${{ steps.dotnet.outputs.parameters }}
+         dotnet build ${{ inputs.dotnet_solution }} --no-restore -c Release ${{ steps.dotnet.outputs.parameters }}
+      - name: Test .NET
+        run: |
+         dotnet test ${{ inputs.dotnet_solution }} --no-restore --no-build -c Release
       - name: Pack .NET
         run: |
-          dotnet pack ${{ env.DOTNET_SOLUTION }} --no-restore --no-build -c Release ${{ steps.dotnet.outputs.parameters }}
+          dotnet pack ${{ inputs.dotnet_solution }} --no-restore --no-build -c Release ${{ steps.dotnet.outputs.parameters }}
       # publish api
       - name: Publish nuget for .NET
         run: dotnet nuget push **\**.nupkg --source "https://nuget.pkg.github.com/KinNeko-De" --api-key ${{ secrets.GITHUB_TOKEN }}
@@ -108,6 +113,6 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/tags/${{ env.GOLANG_MODULE }}/v${{ steps.semantic_version.outputs.semantic_version }}",
+              ref: "refs/tags/${{ inputs.golang_module }}/v${{ steps.semantic_version.outputs.semantic_version }}",
               sha: context.sha
             })

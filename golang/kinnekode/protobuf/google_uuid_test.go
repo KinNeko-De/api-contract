@@ -1,25 +1,71 @@
 package protobuf
 
 import (
+	"testing"
+
 	google "github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
-func TestToUuid(t *testing.T) {
-	expected := google.New()
-	toParse := Uuid{Value: expected.String()}
-	actual, err := ToUuid(&toParse)
-	assert.Nil(t, err)
-	assert.Equal(t, expected, actual)
+var NotNullableTestData = []struct {
+	desc     string
+	input    string
+	expected google.UUID
+}{
+	{
+		desc:     "Formated well",
+		input:    "ed420000-0000-0000-0000-000000000000",
+		expected: google.MustParse("ed420000-0000-0000-0000-000000000000"),
+	},
+	{
+		desc:     "No minus and capital",
+		input:    "ED420000000000000000000000000000",
+		expected: google.MustParse("ed420000000000000000000000000000"),
+	},
+	{
+		desc:     "No minus and lower",
+		input:    "ed420000000000000000000000000000",
+		expected: google.MustParse("ed420000000000000000000000000000"),
+	},
 }
 
-func TestToUuid_UuidNotSet(t *testing.T) {
+var invalidTestData = []struct {
+	desc  string
+	input string
+}{
+	{
+		desc:  "Empty",
+		input: "",
+	},
+	{
+		desc:  "Int id",
+		input: "12",
+	},
+}
+
+func TestToUuid(t *testing.T) {
+	for _, tt := range NotNullableTestData {
+		t.Run(tt.desc, func(t *testing.T) {
+			expected := tt.expected
+			toParse := Uuid{Value: tt.input}
+			actual, err := ToUuid(&toParse)
+			assert.Nil(t, err)
+			assert.Equal(t, expected, actual)
+		})
+	}
+}
+
+func TestToUuid_Invalid(t *testing.T) {
 	expected := google.Nil
-	toParse := Uuid{Value: ""}
-	actual, err := ToUuid(&toParse)
-	assert.NotNil(t, err)
-	assert.Equal(t, expected, actual)
+
+	for _, tt := range invalidTestData {
+		t.Run(tt.desc, func(t *testing.T) {
+			toParse := Uuid{Value: tt.input}
+			actual, err := ToUuid(&toParse)
+			assert.NotNil(t, err)
+			assert.Equal(t, expected, actual)
+		})
+	}
 }
 
 func TestToProtobuf(t *testing.T) {
@@ -29,5 +75,5 @@ func TestToProtobuf(t *testing.T) {
 
 	actual, err := ToProtobuf(toParse)
 	assert.Nil(t, err)
-	assert.Same(t, &expected, actual)
+	assert.Equal(t, &expected, actual)
 }

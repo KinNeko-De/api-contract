@@ -3,8 +3,8 @@
 
 ## Table of Contents
 
-- [kinnekode/protobuf/uuid.proto](#kinnekode_protobuf_uuid-proto)
-    - [Uuid](#kinnekode-protobuf-Uuid)
+- [kinnekode/protobuf/decimal.proto](#kinnekode_protobuf_decimal-proto)
+    - [Decimal](#kinnekode-protobuf-Decimal)
   
 - [kinnekode/protobuf/uuid.proto](#kinnekode_protobuf_uuid-proto)
     - [Uuid](#kinnekode-protobuf-Uuid)
@@ -105,6 +105,42 @@
 
 
 
+<a name="kinnekode_protobuf_decimal-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## kinnekode/protobuf/decimal.proto
+
+
+
+<a name="kinnekode-protobuf-Decimal"></a>
+
+### Decimal
+Decimal https://en.wikipedia.org/wiki/IEEE_754#Decimal
+
+ Format:
+ The whole units of the amount.
+ Followed optional by a dot &#39;.&#39; and the number of nano (10^-9) units of the amount.
+ The value must be between 000000000 and 999999999 inclusive.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  | Example: 42, -42, 42.0000, -42.0000, 42.0001, -42.0001 |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
 <a name="kinnekode_protobuf_uuid-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -117,45 +153,10 @@
 ### Uuid
 Universally Unique Identifier (https://www.rfc-editor.org/rfc/rfc4122)
 
-Example: 550e8400-e29b-11d4-a716-446655440000
-
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="kinnekode_protobuf_uuid-proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## kinnekode/protobuf/uuid.proto
-
-
-
-<a name="kinnekode-protobuf-Uuid"></a>
-
-### Uuid
-Universally Unique Identifier (https://www.rfc-editor.org/rfc/rfc4122)
-
-Example: 550e8400-e29b-11d4-a716-446655440000
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| value | [string](#string) |  | Example: 550e8400-e29b-11d4-a716-446655440000 |
 
 
 
