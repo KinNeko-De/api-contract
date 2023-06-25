@@ -12,7 +12,7 @@
           <IncludeTestAssembly>false</IncludeTestAssembly>
           <SkipAutoProps>true</SkipAutoProps>
           <DeterministicReport>false</DeterministicReport>
-          <ExcludeByAttribute>GeneratedCode</ExcludeByAttribute>
+          <ExcludeByAttribute>GeneratedCode</ExcludeByAttribute> <!-- Exclude generated protobuf code -->
         </Configuration>
       </DataCollector>
     </DataCollectors>

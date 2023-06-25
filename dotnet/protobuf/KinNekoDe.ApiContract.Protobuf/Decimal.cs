@@ -16,14 +16,9 @@ public partial class Decimal : ICustomDiagnosticMessage
 
     public bool TryParseToDecimal(out decimal value)
     {
-        if (decimal.TryParse(Value, GetNumberStyles(), CultureInfo.InvariantCulture, out decimal parsedDecimal))
-        {
-            value = parsedDecimal;
-            return true;
-        }
-
-        value = decimal.Zero;
-        return false;
+        var parseable = decimal.TryParse(Value, GetNumberStyles(), CultureInfo.InvariantCulture, out decimal parsedDecimal);
+        value = parseable ? parsedDecimal : default;
+        return parseable;
     }
 
     public static explicit operator Decimal(decimal value) => FromDecimal(value);
