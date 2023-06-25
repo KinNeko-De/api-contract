@@ -2,6 +2,7 @@ on:
   push:
     paths:
       - '.github/workflows/protobuf-ci-pipeline.yml'
+      - '.github/workflows/ci-pipeline.yml'
       - 'proto/kinnekode/protobuf/**'
       - 'dotnet/protobuf/**'
       - 'golang/kinnekode/protobuf/**'
@@ -10,7 +11,7 @@ on:
 
 concurrency: ci-${{ github.ref }}
 
-name: apicontract-protobuf
+name: ci-api-protobuf
 
 jobs:
     ci-api:
@@ -22,4 +23,4 @@ jobs:
         project: protobuf
         dotnet_solution: dotnet/protobuf/KinNekoDe.ApiContract.Protobuf.sln
         golang_module: golang/kinnekode/protobuf
-        major_minor_patch: 0.2.0
+        major_minor_patch: 0.2.1
