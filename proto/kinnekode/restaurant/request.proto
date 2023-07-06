@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "kinnekode/protobuf/uuid.proto";
+
+package kinnekode.restaurant;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant";
+
+message RequestV1 {
+  // Unique id for the reply_to. must be ensured by the requestor
+  kinnekode.protobuf.Uuid request_id = 1;
+
+  // Pub/Sub Topic where the reply should be send to
+  // currently only a assumption until implementation of reply is done
+  string reply_to = 2;
+}
