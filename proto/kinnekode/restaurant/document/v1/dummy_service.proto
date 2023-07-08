@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "kinnekode/protobuf/uuid.proto";
+
+package kinnekode.restaurant.document.v1;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/v1";
+
+service DocumentService {
+  rpc UploadDocument(stream UploadDocumentRequest) returns (UploadDocumentResponse);
+}
+
+message UploadDocumentRequest {
+  oneof file {
+    Metadata metadata = 1;
+    bytes chunk = 2;
+  }
+
+  message Metadata {
+    kinnekode.protobuf.Uuid request_id = 1;
+    string name = 2;
+  }
+}
+
+message UploadDocumentResponse {
+  kinnekode.protobuf.Uuid document_id = 1;
+}

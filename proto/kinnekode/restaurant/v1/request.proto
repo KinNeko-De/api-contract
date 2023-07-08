@@ -2,11 +2,11 @@ syntax = "proto3";
 
 import "kinnekode/protobuf/uuid.proto";
 
-package kinnekode.restaurant;
+package kinnekode.restaurant.v1;
 
-option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant";
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/v1";
 
-message RequestV1 {
+message Request {
   // Unique id for the reply_to. must be ensured by the requestor
   kinnekode.protobuf.Uuid request_id = 1;
 

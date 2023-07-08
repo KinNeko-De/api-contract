@@ -1,17 +1,17 @@
 syntax = "proto3";
 
-import "kinnekode/restaurant/request.proto";
-import "kinnekode/restaurant/document/invoice.proto";
+import "kinnekode/restaurant/v1/request.proto";
+import "kinnekode/restaurant/document/v1/invoice.proto";
 
-package kinnekode.restaurant.document;
+package kinnekode.restaurant.document.v1;
 
-option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document";
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/v1";
 
 // Request to generate a document
 // Is a command message and uses request/reply pattern
 // Reply will be of type DocumentGeneratedV1 defined generate_document.proto
-message GenerateDocumentV1 {
-  kinnekode.restaurant.RequestV1 request = 1;
+message GenerateDocument {
+  kinnekode.restaurant.v1.Request request = 1;
 
   repeated Document requested_documents = 2;
 
@@ -19,7 +19,7 @@ message GenerateDocumentV1 {
     repeated OutputFormat output_formats = 1;
 
     oneof type {
-      InvoiceV1 invoice = 2;
+      kinnekode.restaurant.document.v1.Invoice invoice = 2;
     }
 
     enum OutputFormat {

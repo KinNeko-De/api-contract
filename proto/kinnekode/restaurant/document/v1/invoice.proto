@@ -3,11 +3,11 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "kinnekode/protobuf/decimal.proto";
 
-package kinnekode.restaurant.document;
+package kinnekode.restaurant.document.v1;
 
-option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document";
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/v1";
 
-message InvoiceV1 {
+message Invoice {
   google.protobuf.Timestamp delivered_on = 1;
  
   // three character currency code as specified in ISO 4217 ( see https://de.wikipedia.org/wiki/ISO_4217 )
