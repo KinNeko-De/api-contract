@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.2.0
 // - protoc             v4.22.0
-// source: kinnekode/restaurant/document/v1/dummy_service.proto
+// source: kinnekode/restaurant/document/v1/document_service.proto
 
 package v1
 
@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DocumentServiceClient interface {
-	UploadDocument(ctx context.Context, opts ...grpc.CallOption) (DocumentService_UploadDocumentClient, error)
+	GeneratePreview(ctx context.Context, opts ...grpc.CallOption) (DocumentService_GeneratePreviewClient, error)
 }
 
 type documentServiceClient struct {
@@ -33,34 +33,34 @@ func NewDocumentServiceClient(cc grpc.ClientConnInterface) DocumentServiceClient
 	return &documentServiceClient{cc}
 }
 
-func (c *documentServiceClient) UploadDocument(ctx context.Context, opts ...grpc.CallOption) (DocumentService_UploadDocumentClient, error) {
-	stream, err := c.cc.NewStream(ctx, &DocumentService_ServiceDesc.Streams[0], "/kinnekode.restaurant.document.v1.DocumentService/UploadDocument", opts...)
+func (c *documentServiceClient) GeneratePreview(ctx context.Context, opts ...grpc.CallOption) (DocumentService_GeneratePreviewClient, error) {
+	stream, err := c.cc.NewStream(ctx, &DocumentService_ServiceDesc.Streams[0], "/kinnekode.restaurant.document.v1.DocumentService/GeneratePreview", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &documentServiceUploadDocumentClient{stream}
+	x := &documentServiceGeneratePreviewClient{stream}
 	return x, nil
 }
 
-type DocumentService_UploadDocumentClient interface {
-	Send(*UploadDocumentRequest) error
-	CloseAndRecv() (*UploadDocumentResponse, error)
+type DocumentService_GeneratePreviewClient interface {
+	Send(*GeneratePreviewRequest) error
+	CloseAndRecv() (*GeneratePreviewResponse, error)
 	grpc.ClientStream
 }
 
-type documentServiceUploadDocumentClient struct {
+type documentServiceGeneratePreviewClient struct {
 	grpc.ClientStream
 }
 
-func (x *documentServiceUploadDocumentClient) Send(m *UploadDocumentRequest) error {
+func (x *documentServiceGeneratePreviewClient) Send(m *GeneratePreviewRequest) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *documentServiceUploadDocumentClient) CloseAndRecv() (*UploadDocumentResponse, error) {
+func (x *documentServiceGeneratePreviewClient) CloseAndRecv() (*GeneratePreviewResponse, error) {
 	if err := x.ClientStream.CloseSend(); err != nil {
 		return nil, err
 	}
-	m := new(UploadDocumentResponse)
+	m := new(GeneratePreviewResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -71,7 +71,7 @@ func (x *documentServiceUploadDocumentClient) CloseAndRecv() (*UploadDocumentRes
 // All implementations must embed UnimplementedDocumentServiceServer
 // for forward compatibility
 type DocumentServiceServer interface {
-	UploadDocument(DocumentService_UploadDocumentServer) error
+	GeneratePreview(DocumentService_GeneratePreviewServer) error
 	mustEmbedUnimplementedDocumentServiceServer()
 }
 
@@ -79,8 +79,8 @@ type DocumentServiceServer interface {
 type UnimplementedDocumentServiceServer struct {
 }
 
-func (UnimplementedDocumentServiceServer) UploadDocument(DocumentService_UploadDocumentServer) error {
-	return status.Errorf(codes.Unimplemented, "method UploadDocument not implemented")
+func (UnimplementedDocumentServiceServer) GeneratePreview(DocumentService_GeneratePreviewServer) error {
+	return status.Errorf(codes.Unimplemented, "method GeneratePreview not implemented")
 }
 func (UnimplementedDocumentServiceServer) mustEmbedUnimplementedDocumentServiceServer() {}
 
@@ -95,26 +95,26 @@ func RegisterDocumentServiceServer(s grpc.ServiceRegistrar, srv DocumentServiceS
 	s.RegisterService(&DocumentService_ServiceDesc, srv)
 }
 
-func _DocumentService_UploadDocument_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(DocumentServiceServer).UploadDocument(&documentServiceUploadDocumentServer{stream})
+func _DocumentService_GeneratePreview_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(DocumentServiceServer).GeneratePreview(&documentServiceGeneratePreviewServer{stream})
 }
 
-type DocumentService_UploadDocumentServer interface {
-	SendAndClose(*UploadDocumentResponse) error
-	Recv() (*UploadDocumentRequest, error)
+type DocumentService_GeneratePreviewServer interface {
+	SendAndClose(*GeneratePreviewResponse) error
+	Recv() (*GeneratePreviewRequest, error)
 	grpc.ServerStream
 }
 
-type documentServiceUploadDocumentServer struct {
+type documentServiceGeneratePreviewServer struct {
 	grpc.ServerStream
 }
 
-func (x *documentServiceUploadDocumentServer) SendAndClose(m *UploadDocumentResponse) error {
+func (x *documentServiceGeneratePreviewServer) SendAndClose(m *GeneratePreviewResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *documentServiceUploadDocumentServer) Recv() (*UploadDocumentRequest, error) {
-	m := new(UploadDocumentRequest)
+func (x *documentServiceGeneratePreviewServer) Recv() (*GeneratePreviewRequest, error) {
+	m := new(GeneratePreviewRequest)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -130,10 +130,10 @@ var DocumentService_ServiceDesc = grpc.ServiceDesc{
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "UploadDocument",
-			Handler:       _DocumentService_UploadDocument_Handler,
+			StreamName:    "GeneratePreview",
+			Handler:       _DocumentService_GeneratePreview_Handler,
 			ClientStreams: true,
 		},
 	},
-	Metadata: "kinnekode/restaurant/document/v1/dummy_service.proto",
+	Metadata: "kinnekode/restaurant/document/v1/document_service.proto",
 }

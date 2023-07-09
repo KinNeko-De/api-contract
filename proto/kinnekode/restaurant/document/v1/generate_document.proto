@@ -9,22 +9,22 @@ option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaur
 
 // Request to generate a document
 // Is a command message and uses request/reply pattern
-// Reply will be of type DocumentGeneratedV1 defined generate_document.proto
+// Reply will be an event of type DocumentGenerated
 message GenerateDocument {
   kinnekode.restaurant.v1.Request request = 1;
 
-  repeated Document requested_documents = 2;
+  repeated RequestedDocument requested_documents = 2;
+}
 
-  message Document {
-    repeated OutputFormat output_formats = 1;
+message RequestedDocument {
+  repeated OutputFormat output_formats = 1;
 
-    oneof type {
-      kinnekode.restaurant.document.v1.Invoice invoice = 2;
-    }
+  oneof type {
+    kinnekode.restaurant.document.v1.Invoice invoice = 2;
+  }
 
-    enum OutputFormat {
-      OUTPUT_FORMAT_UNSPECIFIED = 0;
-      OUTPUT_FORMAT_PDF = 1;
-    }
+  enum OutputFormat {
+    OUTPUT_FORMAT_UNSPECIFIED = 0;
+    OUTPUT_FORMAT_PDF = 1;
   }
 }

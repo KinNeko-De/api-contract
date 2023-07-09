@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+import "kinnekode/protobuf/uuid.proto";
+import "kinnekode/restaurant/document/v1/document.proto";
+import "kinnekode/restaurant/document/v1/generate_document.proto";
+
+package kinnekode.restaurant.document.v1;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/v1";
+
+service DocumentService {
+  rpc GeneratePreview(stream GeneratePreviewRequest) returns (GeneratePreviewResponse);
+}
+
+message GeneratePreviewRequest {
+  kinnekode.protobuf.Uuid request_id = 1;
+
+  RequestedDocument requested_document = 2;
+}
+
+message GeneratePreviewResponse {
+  oneof file {
+    GeneratedFileMetadata metadata = 1;
+    bytes chunk = 2;
+  }
+}
