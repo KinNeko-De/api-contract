@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DocumentServiceClient interface {
-	GeneratePreview(ctx context.Context, opts ...grpc.CallOption) (DocumentService_GeneratePreviewClient, error)
+	GeneratePreview(ctx context.Context, in *GeneratePreviewRequest, opts ...grpc.CallOption) (DocumentService_GeneratePreviewClient, error)
 }
 
 type documentServiceClient struct {
@@ -33,18 +33,23 @@ func NewDocumentServiceClient(cc grpc.ClientConnInterface) DocumentServiceClient
 	return &documentServiceClient{cc}
 }
 
-func (c *documentServiceClient) GeneratePreview(ctx context.Context, opts ...grpc.CallOption) (DocumentService_GeneratePreviewClient, error) {
+func (c *documentServiceClient) GeneratePreview(ctx context.Context, in *GeneratePreviewRequest, opts ...grpc.CallOption) (DocumentService_GeneratePreviewClient, error) {
 	stream, err := c.cc.NewStream(ctx, &DocumentService_ServiceDesc.Streams[0], "/kinnekode.restaurant.document.v1.DocumentService/GeneratePreview", opts...)
 	if err != nil {
 		return nil, err
 	}
 	x := &documentServiceGeneratePreviewClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
 	return x, nil
 }
 
 type DocumentService_GeneratePreviewClient interface {
-	Send(*GeneratePreviewRequest) error
-	CloseAndRecv() (*GeneratePreviewResponse, error)
+	Recv() (*GeneratePreviewResponse, error)
 	grpc.ClientStream
 }
 
@@ -52,14 +57,7 @@ type documentServiceGeneratePreviewClient struct {
 	grpc.ClientStream
 }
 
-func (x *documentServiceGeneratePreviewClient) Send(m *GeneratePreviewRequest) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *documentServiceGeneratePreviewClient) CloseAndRecv() (*GeneratePreviewResponse, error) {
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
+func (x *documentServiceGeneratePreviewClient) Recv() (*GeneratePreviewResponse, error) {
 	m := new(GeneratePreviewResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -71,7 +69,7 @@ func (x *documentServiceGeneratePreviewClient) CloseAndRecv() (*GeneratePreviewR
 // All implementations must embed UnimplementedDocumentServiceServer
 // for forward compatibility
 type DocumentServiceServer interface {
-	GeneratePreview(DocumentService_GeneratePreviewServer) error
+	GeneratePreview(*GeneratePreviewRequest, DocumentService_GeneratePreviewServer) error
 	mustEmbedUnimplementedDocumentServiceServer()
 }
 
@@ -79,7 +77,7 @@ type DocumentServiceServer interface {
 type UnimplementedDocumentServiceServer struct {
 }
 
-func (UnimplementedDocumentServiceServer) GeneratePreview(DocumentService_GeneratePreviewServer) error {
+func (UnimplementedDocumentServiceServer) GeneratePreview(*GeneratePreviewRequest, DocumentService_GeneratePreviewServer) error {
 	return status.Errorf(codes.Unimplemented, "method GeneratePreview not implemented")
 }
 func (UnimplementedDocumentServiceServer) mustEmbedUnimplementedDocumentServiceServer() {}
@@ -96,12 +94,15 @@ func RegisterDocumentServiceServer(s grpc.ServiceRegistrar, srv DocumentServiceS
 }
 
 func _DocumentService_GeneratePreview_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(DocumentServiceServer).GeneratePreview(&documentServiceGeneratePreviewServer{stream})
+	m := new(GeneratePreviewRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(DocumentServiceServer).GeneratePreview(m, &documentServiceGeneratePreviewServer{stream})
 }
 
 type DocumentService_GeneratePreviewServer interface {
-	SendAndClose(*GeneratePreviewResponse) error
-	Recv() (*GeneratePreviewRequest, error)
+	Send(*GeneratePreviewResponse) error
 	grpc.ServerStream
 }
 
@@ -109,16 +110,8 @@ type documentServiceGeneratePreviewServer struct {
 	grpc.ServerStream
 }
 
-func (x *documentServiceGeneratePreviewServer) SendAndClose(m *GeneratePreviewResponse) error {
+func (x *documentServiceGeneratePreviewServer) Send(m *GeneratePreviewResponse) error {
 	return x.ServerStream.SendMsg(m)
-}
-
-func (x *documentServiceGeneratePreviewServer) Recv() (*GeneratePreviewRequest, error) {
-	m := new(GeneratePreviewRequest)
-	if err := x.ServerStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
 }
 
 // DocumentService_ServiceDesc is the grpc.ServiceDesc for DocumentService service.
@@ -132,7 +125,7 @@ var DocumentService_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "GeneratePreview",
 			Handler:       _DocumentService_GeneratePreview_Handler,
-			ClientStreams: true,
+			ServerStreams: true,
 		},
 	},
 	Metadata: "kinnekode/restaurant/document/v1/document_service.proto",
