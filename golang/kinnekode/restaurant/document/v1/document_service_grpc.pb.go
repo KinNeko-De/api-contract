@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DocumentServiceClient interface {
 	GeneratePreview(ctx context.Context, in *GeneratePreviewRequest, opts ...grpc.CallOption) (DocumentService_GeneratePreviewClient, error)
+	HelloWorld(ctx context.Context, in *HelloWorldRequest, opts ...grpc.CallOption) (*HelloWorldResponse, error)
 }
 
 type documentServiceClient struct {
@@ -65,11 +66,21 @@ func (x *documentServiceGeneratePreviewClient) Recv() (*GeneratePreviewResponse,
 	return m, nil
 }
 
+func (c *documentServiceClient) HelloWorld(ctx context.Context, in *HelloWorldRequest, opts ...grpc.CallOption) (*HelloWorldResponse, error) {
+	out := new(HelloWorldResponse)
+	err := c.cc.Invoke(ctx, "/kinnekode.restaurant.document.v1.DocumentService/HelloWorld", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DocumentServiceServer is the server API for DocumentService service.
 // All implementations must embed UnimplementedDocumentServiceServer
 // for forward compatibility
 type DocumentServiceServer interface {
 	GeneratePreview(*GeneratePreviewRequest, DocumentService_GeneratePreviewServer) error
+	HelloWorld(context.Context, *HelloWorldRequest) (*HelloWorldResponse, error)
 	mustEmbedUnimplementedDocumentServiceServer()
 }
 
@@ -79,6 +90,9 @@ type UnimplementedDocumentServiceServer struct {
 
 func (UnimplementedDocumentServiceServer) GeneratePreview(*GeneratePreviewRequest, DocumentService_GeneratePreviewServer) error {
 	return status.Errorf(codes.Unimplemented, "method GeneratePreview not implemented")
+}
+func (UnimplementedDocumentServiceServer) HelloWorld(context.Context, *HelloWorldRequest) (*HelloWorldResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HelloWorld not implemented")
 }
 func (UnimplementedDocumentServiceServer) mustEmbedUnimplementedDocumentServiceServer() {}
 
@@ -114,13 +128,36 @@ func (x *documentServiceGeneratePreviewServer) Send(m *GeneratePreviewResponse) 
 	return x.ServerStream.SendMsg(m)
 }
 
+func _DocumentService_HelloWorld_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HelloWorldRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DocumentServiceServer).HelloWorld(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/kinnekode.restaurant.document.v1.DocumentService/HelloWorld",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DocumentServiceServer).HelloWorld(ctx, req.(*HelloWorldRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DocumentService_ServiceDesc is the grpc.ServiceDesc for DocumentService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DocumentService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "kinnekode.restaurant.document.v1.DocumentService",
 	HandlerType: (*DocumentServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "HelloWorld",
+			Handler:    _DocumentService_HelloWorld_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "GeneratePreview",
