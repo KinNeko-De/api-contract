@@ -152,6 +152,100 @@ func (*GeneratePreviewResponse_Metadata) isGeneratePreviewResponse_File() {}
 
 func (*GeneratePreviewResponse_Chunk) isGeneratePreviewResponse_File() {}
 
+type HelloWorldRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (x *HelloWorldRequest) Reset() {
+	*x = HelloWorldRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_kinnekode_restaurant_document_v1_document_service_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *HelloWorldRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HelloWorldRequest) ProtoMessage() {}
+
+func (x *HelloWorldRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_kinnekode_restaurant_document_v1_document_service_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HelloWorldRequest.ProtoReflect.Descriptor instead.
+func (*HelloWorldRequest) Descriptor() ([]byte, []int) {
+	return file_kinnekode_restaurant_document_v1_document_service_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *HelloWorldRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+type HelloWorldResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Greeting string `protobuf:"bytes,1,opt,name=greeting,proto3" json:"greeting,omitempty"`
+}
+
+func (x *HelloWorldResponse) Reset() {
+	*x = HelloWorldResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_kinnekode_restaurant_document_v1_document_service_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *HelloWorldResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HelloWorldResponse) ProtoMessage() {}
+
+func (x *HelloWorldResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_kinnekode_restaurant_document_v1_document_service_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HelloWorldResponse.ProtoReflect.Descriptor instead.
+func (*HelloWorldResponse) Descriptor() ([]byte, []int) {
+	return file_kinnekode_restaurant_document_v1_document_service_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *HelloWorldResponse) GetGreeting() string {
+	if x != nil {
+		return x.Greeting
+	}
+	return ""
+}
+
 var File_kinnekode_restaurant_document_v1_document_service_proto protoreflect.FileDescriptor
 
 var file_kinnekode_restaurant_document_v1_document_service_proto_rawDesc = []byte{
@@ -214,7 +308,7 @@ func file_kinnekode_restaurant_document_v1_document_service_proto_rawDescGZIP() 
 	return file_kinnekode_restaurant_document_v1_document_service_proto_rawDescData
 }
 
-var file_kinnekode_restaurant_document_v1_document_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_kinnekode_restaurant_document_v1_document_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_kinnekode_restaurant_document_v1_document_service_proto_goTypes = []interface{}{
 	(*GeneratePreviewRequest)(nil),  // 0: kinnekode.restaurant.document.v1.GeneratePreviewRequest
 	(*GeneratePreviewResponse)(nil), // 1: kinnekode.restaurant.document.v1.GeneratePreviewResponse
@@ -265,6 +359,30 @@ func file_kinnekode_restaurant_document_v1_document_service_proto_init() {
 				return nil
 			}
 		}
+		file_kinnekode_restaurant_document_v1_document_service_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*HelloWorldRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_kinnekode_restaurant_document_v1_document_service_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*HelloWorldResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_kinnekode_restaurant_document_v1_document_service_proto_msgTypes[1].OneofWrappers = []interface{}{
 		(*GeneratePreviewResponse_Metadata)(nil),
@@ -276,7 +394,7 @@ func file_kinnekode_restaurant_document_v1_document_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_kinnekode_restaurant_document_v1_document_service_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
