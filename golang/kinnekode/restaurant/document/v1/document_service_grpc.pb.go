@@ -22,6 +22,8 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DocumentServiceClient interface {
+	// Generates a preview of a document and send the document directly back
+	// Documents are not stored
 	GeneratePreview(ctx context.Context, in *GeneratePreviewRequest, opts ...grpc.CallOption) (DocumentService_GeneratePreviewClient, error)
 }
 
@@ -69,6 +71,8 @@ func (x *documentServiceGeneratePreviewClient) Recv() (*GeneratePreviewResponse,
 // All implementations must embed UnimplementedDocumentServiceServer
 // for forward compatibility
 type DocumentServiceServer interface {
+	// Generates a preview of a document and send the document directly back
+	// Documents are not stored
 	GeneratePreview(*GeneratePreviewRequest, DocumentService_GeneratePreviewServer) error
 	mustEmbedUnimplementedDocumentServiceServer()
 }

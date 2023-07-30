@@ -6,6 +6,7 @@ package kinnekode.restaurant.document.v1;
 
 option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/v1";
 
+// Metadata for any generated document
 message GeneratedFileMetadata {
   // Timestamp when the current file was created
   google.protobuf.Timestamp created_at = 1;
