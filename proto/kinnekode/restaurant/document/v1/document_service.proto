@@ -11,7 +11,6 @@ service DocumentService {
   // Generates a preview of a document and send the document directly back
   // Documents are not stored
   rpc GeneratePreview(GeneratePreviewRequest) returns (stream GeneratePreviewResponse);
-  rpc HelloWorld(HelloWorldRequest) returns (HelloWorldResponse);
 }
 
 message GeneratePreviewRequest {
@@ -26,12 +25,4 @@ message GeneratePreviewResponse {
     GeneratedFileMetadata metadata = 1;
     bytes chunk = 2;
   }
-}
-
-message HelloWorldRequest {
-  string name = 1;
-}
-
-message HelloWorldResponse {
-  string greeting = 1;
 }
