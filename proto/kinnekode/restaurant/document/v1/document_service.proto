@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+import "kinnekode/restaurant/document/v1/document.proto";
+import "kinnekode/restaurant/document/v1/requested_document.proto";
+
+package kinnekode.restaurant.document.v1;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/v1";
+
+service DocumentService {
+  // Generates a preview of a document and send the document directly back
+  // Documents are not stored
+  rpc GeneratePreview(GeneratePreviewRequest) returns (stream GeneratePreviewResponse);
+}
+
+message GeneratePreviewRequest {
+  RequestedDocument requested_document = 1;
+}
+
+message GeneratePreviewResponse {
+  // The first message must be metadata
+  // The next messages are only chunks of the file in order
+  // On end of stream the file is ended
+  oneof file {
+    GeneratedFileMetadata metadata = 1;
+    bytes chunk = 2;
+  }
+}

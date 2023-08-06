@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "kinnekode/protobuf/decimal.proto";
+
+package kinnekode.restaurant.document.v1;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/v1";
+
+// Example document definition 
+message Invoice {
+  google.protobuf.Timestamp delivered_on = 1;
+ 
+  // three character currency code as specified in ISO 4217 ( see https://de.wikipedia.org/wiki/ISO_4217 )
+  string currency_code = 2;
+
+  Recipient recipient = 3;
+
+  message Recipient {
+    string name = 1;
+    string street = 2;
+    string city = 3;
+    string postCode = 4;
+    string country = 5;
+  }
+
+  repeated Item items = 4;
+
+  message Item {
+    string description = 1;
+    int64 quantity = 2;
+    kinnekode.protobuf.Decimal netAmount = 3;
+    kinnekode.protobuf.Decimal taxation = 4;
+    kinnekode.protobuf.Decimal totalAmount = 5;
+    kinnekode.protobuf.Decimal sum = 6;
+  }
+}

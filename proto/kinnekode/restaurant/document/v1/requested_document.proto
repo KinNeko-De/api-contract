@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "kinnekode/restaurant/document/v1/requested_document_invoice.proto";
+
+package kinnekode.restaurant.document.v1;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/v1";
+
+message RequestedDocument {
+  oneof type {
+    kinnekode.restaurant.document.v1.Invoice invoice = 1;
+  }
+}

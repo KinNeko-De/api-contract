@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Product>KinNekoDe</Product>
+    <PackageType>Dependency</PackageType>
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <PackageId>kinnekode.apicontract.restaurant</PackageId>
+    <Title>KinNekoDe.ApiContract.Restaurant</Title>
+    <Authors>Nils Diekmann</Authors>
+    <Description>Api contract specified in protobuf.</Description>
+    <Summary>Api contract specified in protobuf.</Summary>
+    <PackageTags>api contract protobuf</PackageTags>
+    <IncludeContentInPack>true</IncludeContentInPack>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <PackageProjectUrl>https://github.com/KinNeko-De/api-contract</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/KinNeko-De/api-contract</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <PackageReadmeFile>content/README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="README.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.22.0" />
+    <PackageReference Include="Grpc.Core" Version="2.46.6" />
+    <PackageReference Include="Grpc.Tools" Version="2.51.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="kinnekode.apicontract.protobuf" Version="0.2.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="../../../proto/kinnekode/restaurant/**/*.proto" ProtoRoot="../../../proto">
+      <Link>kinnekode/restaurant/%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Protobuf>
+  </ItemGroup>
+</Project>
