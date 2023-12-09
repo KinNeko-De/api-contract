@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+import "kinnekode/restaurant/file/v1/file.proto";
+
+package kinnekode.restaurant.file.v1;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/file/v1";
+
+service FileService {
+  // Stores a new file
+  rpc StoreFile(stream StoreFileRequest) returns (StoreFileResponse);
+  rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse);
+}
+
+message StoreFileRequest {
+  oneof file {
+    string name = 1;
+    // TODO identity how cloud events define origin and reuse it
+    bytes chunk = 2;
+  }
+}
+
+message StoreFileResponse {
+  StoredFile stored_file = 1;
+  StoredFileMetadata stored_file_metadata = 2;
+}
+
+message DownloadFileRequest {
+  // id is required
+  // revision is optional; if not set/set to zero the latest revision will be used 
+  StoredFile file = 1;
+}
+
+message DownloadFileResponse {
+  // The first message are the file metadata
+  // The next messages are only chunks of the file in order
+  // On end of stream the file is ended
+  oneof file {
+    StoredFileMetadata metadata = 1;
+    bytes chunk = 2;
+  }
+}

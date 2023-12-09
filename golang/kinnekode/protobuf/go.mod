@@ -1,9 +1,9 @@
 module github.com/kinneko-de/api-contract/golang/kinnekode/protobuf
 
-go 1.20
+go 1.21.1
 
 require (
-	github.com/google/uuid v1.3.0
+	github.com/google/uuid v1.4.0
 	github.com/stretchr/testify v1.8.4
 	google.golang.org/protobuf v1.31.0
 )

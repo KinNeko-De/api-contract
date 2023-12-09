@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "kinnekode/protobuf/uuid.proto";
+
+package kinnekode.restaurant.file.v1;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/file/v1";
+
+message StoredFile {
+  kinnekode.protobuf.Uuid id = 1;
+  int64 revision = 2;
+}
+
+// Metadata for any stored file
+message StoredFileMetadata {
+  // Timestamp when the current file was created
+  google.protobuf.Timestamp created_at = 1;
+  // Size in bytes
+  uint64 size = 2;
+  // Content type in Media Type format (former known as MIME type)
+  // Valid values according to specification https://www.iana.org/assignments/media-types/media-types.xhtml
+  string media_type = 3;
+  // Extension including a dot. Example .zip
+  // used mainly for type where the media type is application/octet-stream and the operating system needs to determine how to open the file.
+  string extension = 4;
+}
