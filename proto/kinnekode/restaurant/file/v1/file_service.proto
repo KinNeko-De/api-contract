@@ -26,9 +26,12 @@ message StoreFileResponse {
 }
 
 message DownloadFileRequest {
-  // id is required
-  // revision is optional; if not set/set to zero the latest revision will be used 
-  StoredFile file = 1;
+    oneof download {
+        // download the latest revision of the file
+        kinnekode.protobuf.Uuid file_id = 1;
+        // download the specific revision of the file
+        kinnekode.protobuf.Uuid revision_id = 2;
+    }
 }
 
 message DownloadFileResponse {

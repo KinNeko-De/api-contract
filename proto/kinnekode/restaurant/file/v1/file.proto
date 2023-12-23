@@ -9,7 +9,7 @@ option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaur
 
 message StoredFile {
   kinnekode.protobuf.Uuid id = 1;
-  int64 revision = 2;
+  kinnekode.protobuf.Uuid revision_id = 2;
 }
 
 // Metadata for any stored file
