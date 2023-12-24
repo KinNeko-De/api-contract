@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "kinnekode/protobuf/uuid.proto";
 import "kinnekode/restaurant/file/v1/file.proto";
 
 package kinnekode.restaurant.file.v1;
