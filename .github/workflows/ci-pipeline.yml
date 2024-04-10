@@ -13,9 +13,6 @@ on:
       major_minor_patch:
         required: true
         type: string
-    secrets:
-      CODECOV_TOKEN:
-        required: true
 
 jobs:
   ci:

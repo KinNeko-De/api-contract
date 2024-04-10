@@ -24,3 +24,4 @@ jobs:
         dotnet_solution: dotnet/restaurant/KinNekoDe.ApiContract.Restaurant.sln
         golang_module: golang/kinnekode/restaurant
         major_minor_patch: 0.0.1
+      secrets: inherit
