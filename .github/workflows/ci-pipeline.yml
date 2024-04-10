@@ -52,12 +52,12 @@ jobs:
       - name : Semantic version
         id: semantic_version
         run: |
-          SEMANTIC_VERSION="${{ inputs.major_minor_patch }}"
-          SEMANTIC_VERSION="${SEMANTIC_VERSION}${{ steps.version_suffix.outputs.extension }}"
-          echo 'MAJOR_MINOR_PATCH: ' $MAJOR_MINOR_PATCH
-          echo 'SEMANTIC_VERSION: ' $SEMANTIC_VERSION
-          echo "semantic_version=$SEMANTIC_VERSION" >> $GITHUB_OUTPUT
-          echo "major_minor_patch=$MAJOR_MINOR_PATCH" >> $GITHUB_OUTPUT
+          MAJOR_MINOR_PATCH="${{ inputs.major_minor_patch }}"
+          echo 'MAJOR_MINOR_PATCH: ' ${MAJOR_MINOR_PATCH}
+          SEMANTIC_VERSION="${MAJOR_MINOR_PATCH}${{ steps.version_suffix.outputs.extension }}"
+          echo 'SEMANTIC_VERSION: ' ${SEMANTIC_VERSION}
+          echo "semantic_version=${SEMANTIC_VERSION}" >> $GITHUB_OUTPUT
+          echo "major_minor_patch=${MAJOR_MINOR_PATCH}" >> $GITHUB_OUTPUT
       - name: "Version upgraded?"
         id: version_check
         run: |
