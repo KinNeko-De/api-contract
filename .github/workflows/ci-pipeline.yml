@@ -58,6 +58,16 @@ jobs:
           echo 'SEMANTIC_VERSION: ' $SEMANTIC_VERSION
           echo "semantic_version=$SEMANTIC_VERSION" >> $GITHUB_OUTPUT
           echo "major_minor_patch=$MAJOR_MINOR_PATCH" >> $GITHUB_OUTPUT
+      - name: "Version upgraded?"
+        id: version_check
+        run: |
+          git fetch --prune --unshallow --tags > /dev/null 2>&1
+          last_main_version=$(git tag --list '${{ inputs.golang_module }}/v[0-9]*\.[0-9]*\.[0-9]*' | grep -Pv "${{ inputs.golang_module }}/v[0-9]*\.[0-9]*\.[0-9]*-" | sort -V | tail -n 1)
+          echo "Compare last main version: $last_main_version with current version: v$MAJOR_MINOR_PATCH"
+          if [[ $(echo -e "${{ inputs.golang_module }}/v$MAJOR_MINOR_PATCH\n$last_main_version" | sort -V | head -n 1) == "${{ inputs.golang_module }}/v$MAJOR_MINOR_PATCH" ]]; then
+            echo "Please upgrade the version number for ${{ inputs.golang_module }} to a higher value than $last_main_version"
+            exit 1
+          fi
       # golang
       - name: Install go
         uses: actions/setup-go@v5
