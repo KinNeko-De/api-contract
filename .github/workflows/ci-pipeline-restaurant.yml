@@ -9,7 +9,7 @@ on:
       - '!**/**.md'
       - '!doc/**'
 
-concurrency: ci-${{ github.ref }}
+concurrency: ci-api-restaurant-${{ github.ref }}
 
 name: ci-api-restaurant
 
