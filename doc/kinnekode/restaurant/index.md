@@ -445,7 +445,7 @@ Metadata for any stored file
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
+| name | [string](#string) |  | TODO identity how cloud events define origin and reuse it |
 
 
 
@@ -461,7 +461,7 @@ Metadata for any stored file
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | store_file | [StoreFile](#kinnekode-restaurant-file-v1-StoreFile) |  |  |
-| chunk | [bytes](#bytes) |  | TODO identity how cloud events define origin and reuse it |
+| chunk | [bytes](#bytes) |  |  |
 
 
 
@@ -508,8 +508,8 @@ Metadata for any stored file
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| chunk | [bytes](#bytes) |  | TODO identity how cloud events define origin and reuse it |
+| store_revision | [StoreRevision](#kinnekode-restaurant-file-v1-StoreRevision) |  |  |
+| chunk | [bytes](#bytes) |  |  |
 
 
 

@@ -21,21 +21,20 @@ service FileService {
 message StoreFileRequest {
   oneof file {
     StoreFile store_file = 1;
-    // TODO identity how cloud events define origin and reuse it
     bytes chunk = 2;
   }
 }
 
 message StoreRevisionRequest {
   oneof file {
-    string name = 1;
-    // TODO identity how cloud events define origin and reuse it
+    StoreRevision store_revision = 1;
     bytes chunk = 2;
   }
 }
 
 message StoreFile {
   string name = 1;
+  // TODO identity how cloud events define origin and reuse it
 }
 
 message StoreRevision {

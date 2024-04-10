@@ -3,7 +3,7 @@ module github.com/kinneko-de/api-contract/golang/kinnekode/restaurant
 go 1.22.1
 
 require (
-	github.com/kinneko-de/api-contract/golang/kinnekode/protobuf v0.2.6
+	github.com/kinneko-de/api-contract/golang/kinnekode/protobuf v0.2.7
 	google.golang.org/grpc v1.63.2
 	google.golang.org/protobuf v1.33.0
 )
