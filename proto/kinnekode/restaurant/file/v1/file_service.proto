@@ -10,15 +10,37 @@ option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaur
 service FileService {
   // Stores a new file
   rpc StoreFile(stream StoreFileRequest) returns (StoreFileResponse);
+  // Stores a new revision to an existing file
+  rpc StoreRevision(stream StoreRevisionRequest) returns (StoreFileResponse);
+  // Download the latest revision of the file
   rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse);
+  // Download a specific revision of the file
+  rpc DownloadRevision(DownloadRevisionRequest) returns (stream DownloadFileResponse);
 }
 
 message StoreFileRequest {
+  oneof file {
+    StoreFile store_file = 1;
+    // TODO identity how cloud events define origin and reuse it
+    bytes chunk = 2;
+  }
+}
+
+message StoreRevisionRequest {
   oneof file {
     string name = 1;
     // TODO identity how cloud events define origin and reuse it
     bytes chunk = 2;
   }
+}
+
+message StoreFile {
+  string name = 1;
+}
+
+message StoreRevision {
+  kinnekode.protobuf.Uuid file_id = 1;
+  StoreFile store_file = 2;
 }
 
 message StoreFileResponse {
@@ -27,18 +49,18 @@ message StoreFileResponse {
 }
 
 message DownloadFileRequest {
-    oneof download {
-        // download the latest revision of the file
-        kinnekode.protobuf.Uuid file_id = 1;
-        // download the specific revision of the file
-        kinnekode.protobuf.Uuid revision_id = 2;
-    }
+    kinnekode.protobuf.Uuid file_id = 1;
+}
+
+message DownloadRevisionRequest {
+    kinnekode.protobuf.Uuid file_id = 1;
+    kinnekode.protobuf.Uuid revision_id = 2;
 }
 
 message DownloadFileResponse {
-  // The first message are the file metadata
-  // The next messages are only chunks of the file in order
-  // On end of stream the file is ended
+  // The first message is the file metadata
+  // The following messages sequential chunks of the file
+  // The file ends when the stream ends
   oneof file {
     StoredFileMetadata metadata = 1;
     bytes chunk = 2;
