@@ -1,21 +1,21 @@
 on:
   push:
     paths:
-      - '.github/workflows/ci-pipeline-restaurant.yml'
-      - '.github/workflows/ci-pipeline.yml'
+      - '.github/workflows/ci-restaurant.yml'
+      - '.github/workflows/ci.yml'
       - 'proto/kinnekode/restaurant/**'
       - 'dotnet/restaurant/**'
       - 'golang/kinnekode/restaurant/**'
       - '!**/**.md'
       - '!doc/**'
 
-concurrency: ci-${{ github.ref }}
+concurrency: ci-api-restaurant-${{ github.ref }}
 
 name: ci-api-restaurant
 
 jobs:
     ci-api:
-      uses: ./.github/workflows/ci-pipeline.yml
+      uses: ./.github/workflows/ci.yml
       permissions:
         contents: write
         packages: write
@@ -23,4 +23,5 @@ jobs:
         project: restaurant
         dotnet_solution: dotnet/restaurant/KinNekoDe.ApiContract.Restaurant.sln
         golang_module: golang/kinnekode/restaurant
-        major_minor_patch: 0.0.2
+        major_minor_patch: 0.0.3
+      secrets: inherit
