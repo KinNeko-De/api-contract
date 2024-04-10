@@ -63,9 +63,9 @@ jobs:
         run: |
           git fetch --prune --unshallow --tags > /dev/null 2>&1
           last_main_version=$(git tag --list '${{ inputs.golang_module }}/v[0-9]*\.[0-9]*\.[0-9]*' | grep -Pv "${{ inputs.golang_module }}/v[0-9]*\.[0-9]*\.[0-9]*-" | sort -V | tail -n 1)
-          echo "Compare last main version: ${last_main_version} with current version: ${{ inputs.golang_module }}/v${MAJOR_MINOR_PATCH}"
-          if [[ $(echo -e "${{ inputs.golang_module }}/v${MAJOR_MINOR_PATCH}\n${last_main_version}" | sort -V | head -n 1) == "${{ inputs.golang_module }}/v${MAJOR_MINOR_PATCH}" ]]; then
-            echo "Please upgrade the version number for ${{ inputs.golang_module }} to a higher value than ${last_main_version}"
+          echo "Compare last main version: $last_main_version with current version: ${{ inputs.golang_module }}/v$MAJOR_MINOR_PATCH"
+          if [[ $(echo -e "${{ inputs.golang_module }}/v$MAJOR_MINOR_PATCH\n$last_main_version" | sort -V | head -n 1) == "${{ inputs.golang_module }}/v$MAJOR_MINOR_PATCH" ]]; then
+            echo "Please upgrade the version number for ${{ inputs.golang_module }} to a higher value than $last_main_version"
             exit 1
           fi
       # golang
