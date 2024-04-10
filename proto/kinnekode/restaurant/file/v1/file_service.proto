@@ -19,14 +19,14 @@ service FileService {
 }
 
 message StoreFileRequest {
-  oneof file {
+  oneof part {
     StoreFile store_file = 1;
     bytes chunk = 2;
   }
 }
 
 message StoreRevisionRequest {
-  oneof file {
+  oneof part {
     StoreRevision store_revision = 1;
     bytes chunk = 2;
   }

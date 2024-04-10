@@ -26,11 +26,11 @@ type StoreFileRequest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Types that are assignable to File:
+	// Types that are assignable to Part:
 	//
 	//	*StoreFileRequest_StoreFile
 	//	*StoreFileRequest_Chunk
-	File isStoreFileRequest_File `protobuf_oneof:"file"`
+	Part isStoreFileRequest_Part `protobuf_oneof:"part"`
 }
 
 func (x *StoreFileRequest) Reset() {
@@ -65,29 +65,29 @@ func (*StoreFileRequest) Descriptor() ([]byte, []int) {
 	return file_kinnekode_restaurant_file_v1_file_service_proto_rawDescGZIP(), []int{0}
 }
 
-func (m *StoreFileRequest) GetFile() isStoreFileRequest_File {
+func (m *StoreFileRequest) GetPart() isStoreFileRequest_Part {
 	if m != nil {
-		return m.File
+		return m.Part
 	}
 	return nil
 }
 
 func (x *StoreFileRequest) GetStoreFile() *StoreFile {
-	if x, ok := x.GetFile().(*StoreFileRequest_StoreFile); ok {
+	if x, ok := x.GetPart().(*StoreFileRequest_StoreFile); ok {
 		return x.StoreFile
 	}
 	return nil
 }
 
 func (x *StoreFileRequest) GetChunk() []byte {
-	if x, ok := x.GetFile().(*StoreFileRequest_Chunk); ok {
+	if x, ok := x.GetPart().(*StoreFileRequest_Chunk); ok {
 		return x.Chunk
 	}
 	return nil
 }
 
-type isStoreFileRequest_File interface {
-	isStoreFileRequest_File()
+type isStoreFileRequest_Part interface {
+	isStoreFileRequest_Part()
 }
 
 type StoreFileRequest_StoreFile struct {
@@ -98,20 +98,20 @@ type StoreFileRequest_Chunk struct {
 	Chunk []byte `protobuf:"bytes,2,opt,name=chunk,proto3,oneof"`
 }
 
-func (*StoreFileRequest_StoreFile) isStoreFileRequest_File() {}
+func (*StoreFileRequest_StoreFile) isStoreFileRequest_Part() {}
 
-func (*StoreFileRequest_Chunk) isStoreFileRequest_File() {}
+func (*StoreFileRequest_Chunk) isStoreFileRequest_Part() {}
 
 type StoreRevisionRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// Types that are assignable to File:
+	// Types that are assignable to Part:
 	//
 	//	*StoreRevisionRequest_StoreRevision
 	//	*StoreRevisionRequest_Chunk
-	File isStoreRevisionRequest_File `protobuf_oneof:"file"`
+	Part isStoreRevisionRequest_Part `protobuf_oneof:"part"`
 }
 
 func (x *StoreRevisionRequest) Reset() {
@@ -146,29 +146,29 @@ func (*StoreRevisionRequest) Descriptor() ([]byte, []int) {
 	return file_kinnekode_restaurant_file_v1_file_service_proto_rawDescGZIP(), []int{1}
 }
 
-func (m *StoreRevisionRequest) GetFile() isStoreRevisionRequest_File {
+func (m *StoreRevisionRequest) GetPart() isStoreRevisionRequest_Part {
 	if m != nil {
-		return m.File
+		return m.Part
 	}
 	return nil
 }
 
 func (x *StoreRevisionRequest) GetStoreRevision() *StoreRevision {
-	if x, ok := x.GetFile().(*StoreRevisionRequest_StoreRevision); ok {
+	if x, ok := x.GetPart().(*StoreRevisionRequest_StoreRevision); ok {
 		return x.StoreRevision
 	}
 	return nil
 }
 
 func (x *StoreRevisionRequest) GetChunk() []byte {
-	if x, ok := x.GetFile().(*StoreRevisionRequest_Chunk); ok {
+	if x, ok := x.GetPart().(*StoreRevisionRequest_Chunk); ok {
 		return x.Chunk
 	}
 	return nil
 }
 
-type isStoreRevisionRequest_File interface {
-	isStoreRevisionRequest_File()
+type isStoreRevisionRequest_Part interface {
+	isStoreRevisionRequest_Part()
 }
 
 type StoreRevisionRequest_StoreRevision struct {
@@ -179,9 +179,9 @@ type StoreRevisionRequest_Chunk struct {
 	Chunk []byte `protobuf:"bytes,2,opt,name=chunk,proto3,oneof"`
 }
 
-func (*StoreRevisionRequest_StoreRevision) isStoreRevisionRequest_File() {}
+func (*StoreRevisionRequest_StoreRevision) isStoreRevisionRequest_Part() {}
 
-func (*StoreRevisionRequest_Chunk) isStoreRevisionRequest_File() {}
+func (*StoreRevisionRequest_Chunk) isStoreRevisionRequest_Part() {}
 
 type StoreFile struct {
 	state         protoimpl.MessageState
@@ -547,7 +547,7 @@ var file_kinnekode_restaurant_file_v1_file_service_proto_rawDesc = []byte{
 	0x74, 0x6f, 0x72, 0x65, 0x46, 0x69, 0x6c, 0x65, 0x48, 0x00, 0x52, 0x09, 0x73, 0x74, 0x6f, 0x72,
 	0x65, 0x46, 0x69, 0x6c, 0x65, 0x12, 0x16, 0x0a, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x0c, 0x48, 0x00, 0x52, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x42, 0x06, 0x0a,
-	0x04, 0x66, 0x69, 0x6c, 0x65, 0x22, 0x8c, 0x01, 0x0a, 0x14, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x52,
+	0x04, 0x70, 0x61, 0x72, 0x74, 0x22, 0x8c, 0x01, 0x0a, 0x14, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x52,
 	0x65, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x54,
 	0x0a, 0x0e, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x5f, 0x72, 0x65, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x2b, 0x2e, 0x6b, 0x69, 0x6e, 0x6e, 0x65, 0x6b, 0x6f,
@@ -556,7 +556,7 @@ var file_kinnekode_restaurant_file_v1_file_service_proto_rawDesc = []byte{
 	0x69, 0x6f, 0x6e, 0x48, 0x00, 0x52, 0x0d, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x52, 0x65, 0x76, 0x69,
 	0x73, 0x69, 0x6f, 0x6e, 0x12, 0x16, 0x0a, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x0c, 0x48, 0x00, 0x52, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x42, 0x06, 0x0a, 0x04,
-	0x66, 0x69, 0x6c, 0x65, 0x22, 0x1f, 0x0a, 0x09, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x46, 0x69, 0x6c,
+	0x70, 0x61, 0x72, 0x74, 0x22, 0x1f, 0x0a, 0x09, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x46, 0x69, 0x6c,
 	0x65, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x8a, 0x01, 0x0a, 0x0d, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x52,
 	0x65, 0x76, 0x69, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x31, 0x0a, 0x07, 0x66, 0x69, 0x6c, 0x65, 0x5f,
