@@ -1,21 +1,21 @@
 on:
   push:
     paths:
-      - '.github/workflows/ci-pipeline-protobuf.yml'
-      - '.github/workflows/ci-pipeline.yml'
+      - '.github/workflows/ci-protobuf.yml'
+      - '.github/workflows/ci.yml'
       - 'proto/kinnekode/protobuf/**'
       - 'dotnet/protobuf/**'
       - 'golang/kinnekode/protobuf/**'
       - '!**/**.md'
       - '!doc/**'
 
-concurrency: ci-${{ github.ref }}
+concurrency: ci-api-protobuf-${{ github.ref }}
 
 name: ci-api-protobuf
 
 jobs:
     ci-api:
-      uses: ./.github/workflows/ci-pipeline.yml
+      uses: ./.github/workflows/ci.yml
       permissions:
         contents: write
         packages: write
@@ -23,4 +23,5 @@ jobs:
         project: protobuf
         dotnet_solution: dotnet/protobuf/KinNekoDe.ApiContract.Protobuf.sln
         golang_module: golang/kinnekode/protobuf
-        major_minor_patch: 0.2.6
+        major_minor_patch: 0.2.7
+      secrets: inherit
