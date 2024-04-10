@@ -1,8 +1,8 @@
 on:
   push:
     paths:
-      - '.github/workflows/ci-pipeline-protobuf.yml'
-      - '.github/workflows/ci-pipeline.yml'
+      - '.github/workflows/ci-protobuf.yml'
+      - '.github/workflows/ci.yml'
       - 'proto/kinnekode/protobuf/**'
       - 'dotnet/protobuf/**'
       - 'golang/kinnekode/protobuf/**'
@@ -15,7 +15,7 @@ name: ci-api-protobuf
 
 jobs:
     ci-api:
-      uses: ./.github/workflows/ci-pipeline.yml
+      uses: ./.github/workflows/ci.yml
       permissions:
         contents: write
         packages: write
