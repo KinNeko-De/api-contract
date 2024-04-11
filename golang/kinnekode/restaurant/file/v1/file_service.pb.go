@@ -451,11 +451,11 @@ type DownloadFileResponse struct {
 	// The following messages sequential chunks of the file
 	// The file ends when the stream ends
 	//
-	// Types that are assignable to File:
+	// Types that are assignable to Part:
 	//
 	//	*DownloadFileResponse_Metadata
 	//	*DownloadFileResponse_Chunk
-	File isDownloadFileResponse_File `protobuf_oneof:"file"`
+	Part isDownloadFileResponse_Part `protobuf_oneof:"part"`
 }
 
 func (x *DownloadFileResponse) Reset() {
@@ -490,29 +490,29 @@ func (*DownloadFileResponse) Descriptor() ([]byte, []int) {
 	return file_kinnekode_restaurant_file_v1_file_service_proto_rawDescGZIP(), []int{7}
 }
 
-func (m *DownloadFileResponse) GetFile() isDownloadFileResponse_File {
+func (m *DownloadFileResponse) GetPart() isDownloadFileResponse_Part {
 	if m != nil {
-		return m.File
+		return m.Part
 	}
 	return nil
 }
 
 func (x *DownloadFileResponse) GetMetadata() *StoredFileMetadata {
-	if x, ok := x.GetFile().(*DownloadFileResponse_Metadata); ok {
+	if x, ok := x.GetPart().(*DownloadFileResponse_Metadata); ok {
 		return x.Metadata
 	}
 	return nil
 }
 
 func (x *DownloadFileResponse) GetChunk() []byte {
-	if x, ok := x.GetFile().(*DownloadFileResponse_Chunk); ok {
+	if x, ok := x.GetPart().(*DownloadFileResponse_Chunk); ok {
 		return x.Chunk
 	}
 	return nil
 }
 
-type isDownloadFileResponse_File interface {
-	isDownloadFileResponse_File()
+type isDownloadFileResponse_Part interface {
+	isDownloadFileResponse_Part()
 }
 
 type DownloadFileResponse_Metadata struct {
@@ -523,9 +523,9 @@ type DownloadFileResponse_Chunk struct {
 	Chunk []byte `protobuf:"bytes,2,opt,name=chunk,proto3,oneof"`
 }
 
-func (*DownloadFileResponse_Metadata) isDownloadFileResponse_File() {}
+func (*DownloadFileResponse_Metadata) isDownloadFileResponse_Part() {}
 
-func (*DownloadFileResponse_Chunk) isDownloadFileResponse_File() {}
+func (*DownloadFileResponse_Chunk) isDownloadFileResponse_Part() {}
 
 var File_kinnekode_restaurant_file_v1_file_service_proto protoreflect.FileDescriptor
 
@@ -601,7 +601,7 @@ var file_kinnekode_restaurant_file_v1_file_service_proto_rawDesc = []byte{
 	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x48, 0x00, 0x52, 0x08, 0x6d, 0x65, 0x74, 0x61,
 	0x64, 0x61, 0x74, 0x61, 0x12, 0x16, 0x0a, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x18, 0x02, 0x20,
 	0x01, 0x28, 0x0c, 0x48, 0x00, 0x52, 0x05, 0x63, 0x68, 0x75, 0x6e, 0x6b, 0x42, 0x06, 0x0a, 0x04,
-	0x66, 0x69, 0x6c, 0x65, 0x32, 0xef, 0x03, 0x0a, 0x0b, 0x46, 0x69, 0x6c, 0x65, 0x53, 0x65, 0x72,
+	0x70, 0x61, 0x72, 0x74, 0x32, 0xef, 0x03, 0x0a, 0x0b, 0x46, 0x69, 0x6c, 0x65, 0x53, 0x65, 0x72,
 	0x76, 0x69, 0x63, 0x65, 0x12, 0x6e, 0x0a, 0x09, 0x53, 0x74, 0x6f, 0x72, 0x65, 0x46, 0x69, 0x6c,
 	0x65, 0x12, 0x2e, 0x2e, 0x6b, 0x69, 0x6e, 0x6e, 0x65, 0x6b, 0x6f, 0x64, 0x65, 0x2e, 0x72, 0x65,
 	0x73, 0x74, 0x61, 0x75, 0x72, 0x61, 0x6e, 0x74, 0x2e, 0x66, 0x69, 0x6c, 0x65, 0x2e, 0x76, 0x31,

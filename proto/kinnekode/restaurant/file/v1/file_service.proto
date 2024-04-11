@@ -60,7 +60,7 @@ message DownloadFileResponse {
   // The first message is the file metadata
   // The following messages sequential chunks of the file
   // The file ends when the stream ends
-  oneof file {
+  oneof part {
     StoredFileMetadata metadata = 1;
     bytes chunk = 2;
   }
