@@ -1,6 +1,6 @@
 #! /bin/sh
 ossystem=win64
-currentversion="22.0"
+currentversion="26.1"
 
 
 rm -rf ${ossystem}
