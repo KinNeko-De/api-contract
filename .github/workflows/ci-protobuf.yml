@@ -6,6 +6,7 @@ on:
       - 'proto/kinnekode/protobuf/**'
       - 'dotnet/protobuf/**'
       - 'golang/kinnekode/protobuf/**'
+      - 'scripts/**'
       - '!**/**.md'
       - '!doc/**'
 

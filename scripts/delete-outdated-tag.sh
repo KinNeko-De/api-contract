@@ -17,6 +17,8 @@ do
     echo "Branch $featurebranchname exists, so not deleting tag $tag"
   else
     echo "Branch $featurebranchname does not exist, so deleting tag $tag"
+    git push origin --delete $tag
+    git tag -d $tag
   fi
 done
 

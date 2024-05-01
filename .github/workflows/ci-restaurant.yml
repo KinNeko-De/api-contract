@@ -6,6 +6,7 @@ on:
       - 'proto/kinnekode/restaurant/**'
       - 'dotnet/restaurant/**'
       - 'golang/kinnekode/restaurant/**'
+      - 'scripts/**'
       - '!**/**.md'
       - '!doc/**'
 
