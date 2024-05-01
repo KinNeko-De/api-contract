@@ -44,7 +44,6 @@ message StoreRevision {
 
 message StoreFileResponse {
   StoredFile stored_file = 1;
-  StoredFileMetadata stored_file_metadata = 2;
 }
 
 message DownloadFileRequest {
@@ -57,11 +56,11 @@ message DownloadRevisionRequest {
 }
 
 message DownloadFileResponse {
-  // The first message is the file metadata
+  // The first message are the file id and the metadata
   // The following messages sequential chunks of the file
   // The file ends when the stream ends
   oneof part {
-    StoredFileMetadata metadata = 1;
+    StoredFile stored_file = 1;
     bytes chunk = 2;
   }
 }

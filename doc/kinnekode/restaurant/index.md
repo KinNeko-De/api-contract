@@ -22,7 +22,7 @@
   
 - [kinnekode/restaurant/file/v1/file.proto](#kinnekode_restaurant_file_v1_file-proto)
     - [StoredFile](#kinnekode-restaurant-file-v1-StoredFile)
-    - [StoredFileMetadata](#kinnekode-restaurant-file-v1-StoredFileMetadata)
+    - [StoredFile.Metadata](#kinnekode-restaurant-file-v1-StoredFile-Metadata)
   
 - [kinnekode/restaurant/file/v1/file_service.proto](#kinnekode_restaurant_file_v1_file_service-proto)
     - [DownloadFileRequest](#kinnekode-restaurant-file-v1-DownloadFileRequest)
@@ -350,15 +350,16 @@ Example document definition
 | ----- | ---- | ----- | ----------- |
 | id | [kinnekode.protobuf.Uuid](#kinnekode-protobuf-Uuid) |  |  |
 | revision_id | [kinnekode.protobuf.Uuid](#kinnekode-protobuf-Uuid) |  |  |
+| metadata | [StoredFile.Metadata](#kinnekode-restaurant-file-v1-StoredFile-Metadata) |  |  |
 
 
 
 
 
 
-<a name="kinnekode-restaurant-file-v1-StoredFileMetadata"></a>
+<a name="kinnekode-restaurant-file-v1-StoredFile-Metadata"></a>
 
-### StoredFileMetadata
+### StoredFile.Metadata
 Metadata for any stored file
 
 
@@ -413,7 +414,7 @@ Metadata for any stored file
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| metadata | [StoredFileMetadata](#kinnekode-restaurant-file-v1-StoredFileMetadata) |  |  |
+| stored_file | [StoredFile](#kinnekode-restaurant-file-v1-StoredFile) |  |  |
 | chunk | [bytes](#bytes) |  |  |
 
 
@@ -477,7 +478,6 @@ Metadata for any stored file
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | stored_file | [StoredFile](#kinnekode-restaurant-file-v1-StoredFile) |  |  |
-| stored_file_metadata | [StoredFileMetadata](#kinnekode-restaurant-file-v1-StoredFileMetadata) |  |  |
 
 
 
