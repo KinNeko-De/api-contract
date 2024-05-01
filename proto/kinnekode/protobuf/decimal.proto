@@ -13,5 +13,4 @@ option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/protobu
 message Decimal {
   // Example: 42, -42, 42.0000, -42.0000, 42.0001, -42.0001
   string value = 1;
-  
 }
