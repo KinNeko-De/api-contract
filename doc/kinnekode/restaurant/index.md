@@ -20,6 +20,22 @@
     - [Invoice.Item](#kinnekode-restaurant-document-v1-Invoice-Item)
     - [Invoice.Recipient](#kinnekode-restaurant-document-v1-Invoice-Recipient)
   
+- [kinnekode/restaurant/file/v1/file.proto](#kinnekode_restaurant_file_v1_file-proto)
+    - [StoredFile](#kinnekode-restaurant-file-v1-StoredFile)
+    - [StoredFile.Metadata](#kinnekode-restaurant-file-v1-StoredFile-Metadata)
+  
+- [kinnekode/restaurant/file/v1/file_service.proto](#kinnekode_restaurant_file_v1_file_service-proto)
+    - [DownloadFileRequest](#kinnekode-restaurant-file-v1-DownloadFileRequest)
+    - [DownloadFileResponse](#kinnekode-restaurant-file-v1-DownloadFileResponse)
+    - [DownloadRevisionRequest](#kinnekode-restaurant-file-v1-DownloadRevisionRequest)
+    - [StoreFile](#kinnekode-restaurant-file-v1-StoreFile)
+    - [StoreFileRequest](#kinnekode-restaurant-file-v1-StoreFileRequest)
+    - [StoreFileResponse](#kinnekode-restaurant-file-v1-StoreFileResponse)
+    - [StoreRevision](#kinnekode-restaurant-file-v1-StoreRevision)
+    - [StoreRevisionRequest](#kinnekode-restaurant-file-v1-StoreRevisionRequest)
+  
+    - [FileService](#kinnekode-restaurant-file-v1-FileService)
+  
 - [kinnekode/protobuf/decimal.proto](#kinnekode_protobuf_decimal-proto)
     - [Decimal](#kinnekode-protobuf-Decimal)
   
@@ -312,6 +328,211 @@ Example document definition
  
 
  
+
+ 
+
+
+
+<a name="kinnekode_restaurant_file_v1_file-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## kinnekode/restaurant/file/v1/file.proto
+
+
+
+<a name="kinnekode-restaurant-file-v1-StoredFile"></a>
+
+### StoredFile
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [kinnekode.protobuf.Uuid](#kinnekode-protobuf-Uuid) |  |  |
+| revision_id | [kinnekode.protobuf.Uuid](#kinnekode-protobuf-Uuid) |  |  |
+| metadata | [StoredFile.Metadata](#kinnekode-restaurant-file-v1-StoredFile-Metadata) |  |  |
+
+
+
+
+
+
+<a name="kinnekode-restaurant-file-v1-StoredFile-Metadata"></a>
+
+### StoredFile.Metadata
+Metadata for any stored file
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| created_at | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  | Timestamp when the current file was created |
+| size | [uint64](#uint64) |  | Size in bytes |
+| media_type | [string](#string) |  | Content type in Media Type format (former known as MIME type) Valid values according to specification https://www.iana.org/assignments/media-types/media-types.xhtml |
+| extension | [string](#string) |  | Extension including a dot. Example .zip used mainly for type where the media type is application/octet-stream and the operating system needs to determine how to open the file. |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="kinnekode_restaurant_file_v1_file_service-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## kinnekode/restaurant/file/v1/file_service.proto
+
+
+
+<a name="kinnekode-restaurant-file-v1-DownloadFileRequest"></a>
+
+### DownloadFileRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| file_id | [kinnekode.protobuf.Uuid](#kinnekode-protobuf-Uuid) |  |  |
+
+
+
+
+
+
+<a name="kinnekode-restaurant-file-v1-DownloadFileResponse"></a>
+
+### DownloadFileResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| stored_file | [StoredFile](#kinnekode-restaurant-file-v1-StoredFile) |  |  |
+| chunk | [bytes](#bytes) |  |  |
+
+
+
+
+
+
+<a name="kinnekode-restaurant-file-v1-DownloadRevisionRequest"></a>
+
+### DownloadRevisionRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| file_id | [kinnekode.protobuf.Uuid](#kinnekode-protobuf-Uuid) |  |  |
+| revision_id | [kinnekode.protobuf.Uuid](#kinnekode-protobuf-Uuid) |  |  |
+
+
+
+
+
+
+<a name="kinnekode-restaurant-file-v1-StoreFile"></a>
+
+### StoreFile
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | TODO identity how cloud events define origin and reuse it |
+
+
+
+
+
+
+<a name="kinnekode-restaurant-file-v1-StoreFileRequest"></a>
+
+### StoreFileRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| store_file | [StoreFile](#kinnekode-restaurant-file-v1-StoreFile) |  |  |
+| chunk | [bytes](#bytes) |  |  |
+
+
+
+
+
+
+<a name="kinnekode-restaurant-file-v1-StoreFileResponse"></a>
+
+### StoreFileResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| stored_file | [StoredFile](#kinnekode-restaurant-file-v1-StoredFile) |  |  |
+
+
+
+
+
+
+<a name="kinnekode-restaurant-file-v1-StoreRevision"></a>
+
+### StoreRevision
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| file_id | [kinnekode.protobuf.Uuid](#kinnekode-protobuf-Uuid) |  |  |
+| store_file | [StoreFile](#kinnekode-restaurant-file-v1-StoreFile) |  |  |
+
+
+
+
+
+
+<a name="kinnekode-restaurant-file-v1-StoreRevisionRequest"></a>
+
+### StoreRevisionRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| store_revision | [StoreRevision](#kinnekode-restaurant-file-v1-StoreRevision) |  |  |
+| chunk | [bytes](#bytes) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="kinnekode-restaurant-file-v1-FileService"></a>
+
+### FileService
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| StoreFile | [StoreFileRequest](#kinnekode-restaurant-file-v1-StoreFileRequest) stream | [StoreFileResponse](#kinnekode-restaurant-file-v1-StoreFileResponse) | Stores a new file |
+| StoreRevision | [StoreRevisionRequest](#kinnekode-restaurant-file-v1-StoreRevisionRequest) stream | [StoreFileResponse](#kinnekode-restaurant-file-v1-StoreFileResponse) | Stores a new revision to an existing file |
+| DownloadFile | [DownloadFileRequest](#kinnekode-restaurant-file-v1-DownloadFileRequest) | [DownloadFileResponse](#kinnekode-restaurant-file-v1-DownloadFileResponse) stream | Download the latest revision of the file |
+| DownloadRevision | [DownloadRevisionRequest](#kinnekode-restaurant-file-v1-DownloadRevisionRequest) | [DownloadFileResponse](#kinnekode-restaurant-file-v1-DownloadFileResponse) stream | Download a specific revision of the file |
 
  
 

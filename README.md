@@ -8,9 +8,11 @@ A clear, easy to use and fully automated api is the basic for a microservice arc
 
 For remote procedure calls the usage of [Grpc](https://grpc.io/) is preferred.
 
-# Status
-[![ci-api-protobuf](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-pipeline-protobuf.yml/badge.svg)](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-pipeline-protobuf.yml)
+## Builds
+[![ci-api-protobuf](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-protobuf.yml/badge.svg)](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-protobuf.yml)
+[![ci-api-restaurant](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-restaurant.yml/badge.svg)](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-restaurant.yml)
 
+## Test coverage
 [![codecov](https://codecov.io/gh/KinNeko-De/api-contract/branch/main/graph/badge.svg?token=U17XTP8S6Y)](https://codecov.io/gh/KinNeko-De/api-contract)
 
 # Motivation
@@ -27,7 +29,7 @@ Fetching this version must be fully automated.
 6. Merge the code back to the master using a pull request.
 
 # Scope of the API projects
-Each first level folder *proto/kinnekode/<nameOfProject>* is a project.
+Each first level folder *[proto/kinnekode/\<nameOfProject\>](proto/kinnekode/)* is a project.
 
 Each of the projects in this repository has its own lifecycle and version number.
 

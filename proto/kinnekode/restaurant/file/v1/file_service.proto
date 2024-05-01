@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+import "kinnekode/protobuf/uuid.proto";
+import "kinnekode/restaurant/file/v1/file.proto";
+
+package kinnekode.restaurant.file.v1;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/file/v1";
+
+service FileService {
+  // Stores a new file
+  rpc StoreFile(stream StoreFileRequest) returns (StoreFileResponse);
+  // Stores a new revision to an existing file
+  rpc StoreRevision(stream StoreRevisionRequest) returns (StoreFileResponse);
+  // Download the latest revision of the file
+  rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse);
+  // Download a specific revision of the file
+  rpc DownloadRevision(DownloadRevisionRequest) returns (stream DownloadFileResponse);
+}
+
+message StoreFileRequest {
+  oneof part {
+    StoreFile store_file = 1;
+    bytes chunk = 2;
+  }
+}
+
+message StoreRevisionRequest {
+  oneof part {
+    StoreRevision store_revision = 1;
+    bytes chunk = 2;
+  }
+}
+
+message StoreFile {
+  string name = 1;
+  // TODO identity how cloud events define origin and reuse it
+}
+
+message StoreRevision {
+  kinnekode.protobuf.Uuid file_id = 1;
+  StoreFile store_file = 2;
+}
+
+message StoreFileResponse {
+  StoredFile stored_file = 1;
+}
+
+message DownloadFileRequest {
+    kinnekode.protobuf.Uuid file_id = 1;
+}
+
+message DownloadRevisionRequest {
+    kinnekode.protobuf.Uuid file_id = 1;
+    kinnekode.protobuf.Uuid revision_id = 2;
+}
+
+message DownloadFileResponse {
+  // The first message are the file id and the metadata
+  // The following messages sequential chunks of the file
+  // The file ends when the stream ends
+  oneof part {
+    StoredFile stored_file = 1;
+    bytes chunk = 2;
+  }
+}
