@@ -29,7 +29,7 @@ Fetching this version must be fully automated.
 6. Merge the code back to the master using a pull request.
 
 # Scope of the API projects
-Each first level folder *proto/kinnekode/<nameOfProject>* is a project.
+Each first level folder *[proto/kinnekode/\<nameOfProject\>](proto/kinnekode/)* is a project.
 
 Each of the projects in this repository has its own lifecycle and version number.
 
