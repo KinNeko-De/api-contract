@@ -73,6 +73,8 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '^1.22.0'
+          cache: true
+          cache-dependency-path: '**/go.sum'
       - name: "Installed go version"
         run: go version
       - name: "Build go api"
@@ -92,7 +94,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 7.x
+          dotnet-version: 8.x
       - name: Set dotnet parameter
         id: dotnet
         run: |
