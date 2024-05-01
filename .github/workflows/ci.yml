@@ -74,9 +74,7 @@ jobs:
         with:
           go-version: '^1.22.0'
           cache: true
-          cache-dependency-path: |
-            'golang/kinnekode/protobuf/go.sum'
-            'golang/kinnekode/restaurant/go.sum'
+          cache-dependency-path: '**/go.sum'
       - name: "Installed go version"
         run: go version
       - name: "Build go api"
