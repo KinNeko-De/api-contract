@@ -8,7 +8,6 @@ A clear, easy to use and fully automated api is the basic for a microservice arc
 
 For remote procedure calls the usage of [Grpc](https://grpc.io/) is preferred.
 
-# Status
 ## Builds
 [![ci-api-protobuf](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-protobuf.yml/badge.svg)](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-protobuf.yml)
 [![ci-api-restaurant](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-restaurant.yml/badge.svg)](https://github.com/KinNeko-De/api-contract/actions/workflows/ci-restaurant.yml)
