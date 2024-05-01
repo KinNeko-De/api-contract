@@ -23,5 +23,5 @@ jobs:
         project: protobuf
         dotnet_solution: dotnet/protobuf/KinNekoDe.ApiContract.Protobuf.sln
         golang_module: golang/kinnekode/protobuf
-        major_minor_patch: 0.2.8
+        major_minor_patch: 0.2.9
       secrets: inherit
