@@ -1,5 +1,6 @@
 syntax = "proto3";
 
+import "google/api/annotations.proto";
 import "kinnekode/restaurant/document/design/v1/template.proto";
 
 package kinnekode.restaurant.document.design.v1;
