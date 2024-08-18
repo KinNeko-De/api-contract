@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package kinnekode.restaurant.document.design.v1;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/design/v1";
+
+// Public visible api for template management
+service TemplateAPI {
+  // List of crated templates for a quick overview
+  rpc ListTemplates (ListTemplatesRequest) returns (ListTemplatesResponse) {
+    option (google.api.http) = {
+      get: "/v1/templates"
+    };
+  };
+}
+
+message ListTemplatesRequest {
+}
+
+message ListTemplatesResponse {
+  repeated TemplateSummary templates = 1;
+}

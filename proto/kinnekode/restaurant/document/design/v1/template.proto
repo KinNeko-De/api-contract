@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "kinnekode/protobuf/uuid.proto";
+
+package kinnekode.restaurant.document.design.v1;
+
+option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/design/v1";
+
+message TemplateSummary {
+  kinnekode.protobuf.Uuid id = 1;
+  string name = 2;
+  string description = 3;
+  TemplateLanguage language = 4;
+  google.protobuf.Timestamp last_modified_at = 5;
+  repeated string tags = 6;
+  TemplateStatus status = 7;
+}
+
+enum TemplateLanguage {
+  TEMPLATE_LANGUAGE_UNSPECIFIED = 0;
+  TEMPLATE_LANGUAGE_LUALATEX = 1;
+  TEMPLATE_LANGUAGE_WORD = 2;
+}
+
+enum TemplateStatus {
+  TEMPLATE_STATUS_UNSPECIFIED = 0;
+  TEMPLATE_STATUS_DRAFT = 1;
+  TEMPLATE_STATUS_ACTIVE = 2;
+}
