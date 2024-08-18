@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+import "kinnekode/restaurant/document/design/v1/template.proto";
+
 package kinnekode.restaurant.document.design.v1;
 
 option go_package = "github.com/kinneko-de/api-contract/golang/kinnekode/restaurant/document/design/v1";
@@ -9,7 +11,7 @@ service TemplateAPI {
   // List of crated templates for a quick overview
   rpc ListTemplates (ListTemplatesRequest) returns (ListTemplatesResponse) {
     option (google.api.http) = {
-      get: "/v1/templates"
+       get: "/v1/templates"
     };
   };
 }
