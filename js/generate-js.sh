@@ -26,7 +26,7 @@ outputpath=js
 for i in "${projects[@]}"
 do
     find ${protopath}/${i} -name *.proto \
-    -exec tools/protoc/win64/bin/protoc.exe --proto_path=${protobase} --js_out=import_style=commonjs:${outputpath} --grpc-web_out=import_style=typescript,mode=grpcwebtext:./generated {} +
+    -exec tools/protoc/win64/bin/protoc.exe --proto_path=${protobase} --js_out=import_style=commonjs:${outputpath} --grpc-web_out=import_style=typescript,mode=grpcwebtext:${outputpath} {} +
     echo "Generated js code for: $i"
 done
 
