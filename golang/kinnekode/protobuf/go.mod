@@ -1,11 +1,11 @@
 module github.com/kinneko-de/api-contract/golang/kinnekode/protobuf
 
-go 1.22.2
+go 1.23.0
 
 require (
 	github.com/google/uuid v1.6.0
 	github.com/stretchr/testify v1.9.0
-	google.golang.org/protobuf v1.34.0
+	google.golang.org/protobuf v1.34.2
 )
 
 require (
