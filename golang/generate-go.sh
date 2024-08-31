@@ -29,7 +29,7 @@ outputpath=golang
 for i in "${projects[@]}"
 do
     find ${protopath}/${i} -name *.proto \
-    -exec tools/protoc/win64/bin/protoc.exe --proto_path=${protobase} --go_out=${outputpath} --go_opt=paths=source_relative --go-grpc_out=${outputpath} --go-grpc_opt=paths=source_relative {} +
+    -exec tools/protoc/win64/bin/protoc.exe --proto_path=${protobase} --go_out=${outputpath} --go_opt=paths=source_relative --go-grpc_out=${outputpath} --go-grpc_opt=paths=source_relative --grpc-gateway_out=${outputpath} --grpc-gateway_opt=paths=source_relative {} +
     echo "Generated go code for: $i"
 	
 	cd ${outputpath}/${protobasepackage}/${i}
