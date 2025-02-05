@@ -99,7 +99,7 @@ jobs:
         id: dotnet
         run: |
           ARGS=()
-          ARGS+=("-p:VersionPrefix=${{ steps.semantic_version.outputs.semantic_version }}")
+          ARGS+=("-p:VersionPrefix=${{ steps.semantic_version.outputs.major_minor_patch }}")
           if [[ "${{ steps.version_suffix.outputs.use_version_suffix }}" == 'true' ]]; then
             ARGS+=('--version-suffix' "${{ steps.version_suffix.outputs.version_suffix }}")
           fi
